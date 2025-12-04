@@ -3,63 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo cáo Nghiên cứu Thị trường CVH v2.0</title>
+    <title>Báo Cáo Nghiên Cứu Thị Trường CVH v2.0</title>
     <style>
         :root {
-            --primary: #0056b3; /* CVH Blue */
+            --primary: #0056b3;
+            --primary-dark: #003d82;
             --secondary: #00a8e8;
-            --accent: #ff6b6b; /* Alert */
-            --bg: #f8f9fa;
-            --text: #2d3436;
+            --accent: #ff6b6b;
+            --bg: #f4f6f9;
+            --text: #333;
             --white: #ffffff;
-            --success: #00b894;
-            --warning: #fdcb6e;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border: #dee2e6;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
+            padding: 0;
             line-height: 1.6;
+            font-size: 15px;
         }
 
         /* HEADER */
-        .report-header {
-            background: linear-gradient(135deg, var(--primary), #0984e3);
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--white);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .report-header h1 { margin: 0; font-size: 2rem; }
-        .report-header .meta { margin-top: 10px; font-size: 0.9rem; opacity: 0.9; }
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header .meta { margin-top: 15px; opacity: 0.9; font-size: 0.95rem; }
 
-        /* NAVIGATION TABS */
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
+        /* NAV TABS */
+        .tabs-container {
             background: var(--white);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 0 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
             flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .nav-btn {
-            padding: 15px 20px;
-            border: none;
+        .tab-btn {
             background: none;
-            cursor: pointer;
+            border: none;
+            padding: 15px 20px;
+            font-size: 15px;
             font-weight: 600;
-            color: #636e72;
-            transition: all 0.3s;
+            color: #555;
+            cursor: pointer;
             border-bottom: 3px solid transparent;
+            transition: all 0.3s;
         }
-        .nav-btn:hover { color: var(--primary); background: #f1f2f6; }
-        .nav-btn.active { color: var(--primary); border-bottom: 3px solid var(--primary); }
+        .tab-btn:hover { color: var(--primary); background: #f8f9fa; }
+        .tab-btn.active { color: var(--primary); border-bottom: 3px solid var(--primary); }
 
-        /* CONTAINER */
+        /* CONTENT */
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -67,110 +79,123 @@
             min-height: 80vh;
         }
 
-        .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
-        
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* GENERAL COMPONENTS */
-        .section-title {
-            border-left: 5px solid var(--primary);
-            padding-left: 15px;
-            color: var(--primary);
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
+        /* COMPONENTS */
+        h2 { color: var(--primary); border-left: 5px solid var(--secondary); padding-left: 15px; margin-top: 40px; }
+        h3 { color: #444; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h4 { color: var(--primary-dark); margin-bottom: 10px; }
 
         .card {
             background: var(--white);
             border-radius: 8px;
             padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        
-        @media (max-width: 768px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .nav-tabs { justify-content: flex-start; overflow-x: auto; white-space: nowrap; }
-        }
-
-        /* HIGHLIGHT BOXES */
-        .box-info { background: #e3f2fd; border-left: 4px solid var(--secondary); padding: 15px; border-radius: 4px; }
-        .box-warn { background: #fff3cd; border-left: 4px solid var(--warning); padding: 15px; border-radius: 4px; }
-        .box-alert { background: #ffebee; border-left: 4px solid var(--accent); padding: 15px; border-radius: 4px; }
-        .box-success { background: #e8f5e9; border-left: 4px solid var(--success); padding: 15px; border-radius: 4px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 
         /* TABLES */
-        .data-table {
+        .table-responsive { overflow-x: auto; margin: 20px 0; }
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
             background: var(--white);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            min-width: 600px;
         }
-        .data-table th, .data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #dfe6e9; }
-        .data-table th { background-color: var(--primary); color: var(--white); position: sticky; top: 0; }
-        .data-table tr:hover { background-color: #f1f2f6; }
-        .table-responsive { overflow-x: auto; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background-color: #f1f5f9; color: #333; font-weight: 700; }
+        tr:hover { background-color: #f8f9fa; }
+        
+        .check { color: var(--success); font-weight: bold; }
+        .cross { color: var(--accent); font-weight: bold; }
+        .warn { color: #e67e22; font-weight: bold; }
 
-        /* SPECIFIC STYLES */
-        .stat-big { font-size: 2.5rem; font-weight: bold; color: var(--primary); line-height: 1; display: block; margin-bottom: 5px; }
-        .stat-desc { color: #636e72; font-size: 0.9rem; }
-        
-        .competitor-group { margin-top: 30px; }
-        .competitor-card { border-top: 3px solid #b2bec3; }
-        .competitor-card h4 { color: #2d3436; margin-top: 0; }
-        
-        /* 7Ps Table Highlight */
-        .comparison-highlight th { background-color: #2d3436; }
-        .cvh-col { background-color: #e3f2fd; font-weight: bold; border-left: 2px solid var(--primary); border-right: 2px solid var(--primary); }
-        
-        .price-badge {
-            background: var(--primary); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;
+        /* BOXES */
+        .box { padding: 20px; border-radius: 6px; margin-bottom: 20px; }
+        .box-info { background: #e3f2fd; border-left: 4px solid var(--secondary); }
+        .box-warn { background: #fff3cd; border-left: 4px solid var(--warning); }
+        .box-success { background: #d4edda; border-left: 4px solid var(--success); }
+        .box-danger { background: #f8d7da; border-left: 4px solid var(--accent); }
+
+        /* ROI CARDS */
+        .roi-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            background: #fff;
+            transition: transform 0.2s;
         }
+        .roi-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .roi-header { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-bottom: 15px; text-align: center; }
+        .roi-price { font-size: 2rem; font-weight: bold; text-align: center; color: #333; margin-bottom: 10px; }
+        .roi-value { font-size: 0.9rem; color: #666; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;}
+        .roi-footer { background: #f8f9fa; padding: 10px; text-align: center; font-weight: bold; color: var(--success); border-radius: 4px; margin-top: 15px;}
 
-        footer { text-align: center; padding: 40px; color: #636e72; font-size: 0.9rem; border-top: 1px solid #dfe6e9; margin-top: 50px;}
+        /* STATS */
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; line-height: 1.2; }
+        .stat-label { font-size: 0.95rem; color: #555; }
+
+        /* FOOTER */
+        footer {
+            background: #343a40;
+            color: #adb5bd;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .tabs-container { overflow-x: auto; }
+            .tabs { min-width: 600px; }
+        }
     </style>
 </head>
 <body>
 
-<header class="report-header">
+<header>
     <h1>BÁO CÁO NGHIÊN CỨU THỊ TRƯỜNG CVH</h1>
     <div class="meta">
-        Phiên bản: 2.0 | Ngày cập nhật: 04/12/2025 | Nghiên cứu viên: Ruby<br>
-        Phạm vi: Toàn nước Mỹ (Tập trung khu vực người Việt)
+        <strong>Phiên bản:</strong> 2.0 | <strong>Ngày:</strong> 04/12/2025 | <strong>Nghiên cứu viên:</strong> Ruby<br>
+        <strong>Phạm vi:</strong> Toàn nước Mỹ (Tập trung khu vực người Việt)
     </div>
 </header>
 
-<nav class="nav-tabs">
-    <button class="nav-btn active" onclick="openTab('tongquan')">Tổng Quan</button>
-    <button class="nav-btn" onclick="openTab('nhucau')">Nhu Cầu</button>
-    <button class="nav-btn" onclick="openTab('doithu')">Đối Thủ (7Ps)</button>
-    <button class="nav-btn" onclick="openTab('giaca')">Giá & Chất Lượng</button>
-    <button class="nav-btn" onclick="openTab('raocan')">Rào Cản</button>
-    <button class="nav-btn" onclick="openTab('baohiem')">Bảo Hiểm</button>
-    <button class="nav-btn" onclick="openTab('danhgia')">Đánh Giá & Đề Xuất</button>
-    <button class="nav-btn" onclick="openTab('phuluc')">Phụ Lục</button>
-</nav>
+<div class="tabs-container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('tongquan')">Tổng Quan</button>
+        <button class="tab-btn" onclick="openTab('nhucau')">Nhu Cầu</button>
+        <button class="tab-btn" onclick="openTab('doithu')">Đối Thủ</button>
+        <button class="tab-btn" onclick="openTab('giaca')">Giá & Chất Lượng</button>
+        <button class="tab-btn" onclick="openTab('raocan')">Rào Cản</button>
+        <button class="tab-btn" onclick="openTab('baohiem')">Bảo Hiểm</button>
+        <button class="tab-btn" onclick="openTab('khuyennghi')">Khuyến Nghị</button>
+        <button class="tab-btn" onclick="openTab('phuluc')">Phụ Lục</button>
+    </div>
+</div>
 
 <div class="container">
 
     <div id="tongquan" class="tab-content active">
-        <h2 class="section-title">📊 Tổng Quan Về CVH</h2>
+        <h2>📊 Tổng Quan Về CVH</h2>
         <div class="box-info">
-            <p><strong>CVH (Compass Virtual Healthcare)</strong> là nền tảng chăm sóc sức khỏe từ xa phục vụ cộng đồng người Việt tại Mỹ với 15 dịch vụ toàn diện. Tích hợp Y học cổ truyền, AI cá nhân hóa và đội ngũ Bác sĩ bản ngữ.</p>
+            <p><strong>CVH (Compass Virtual Healthcare)</strong> là nền tảng chăm sóc sức khỏe từ xa phục vụ cộng đồng người Việt tại Mỹ với 15 dịch vụ chăm sóc toàn diện, từ tư vấn 24/7, quản lý bệnh mãn tính, đến khám sức khỏe định kỳ và đánh giá thuốc chuyên sâu.</p>
         </div>
 
         <div class="grid-2">
             <div class="card">
                 <h3>📦 Mô hình giá</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom:10px">🔹 <strong>Gói Kết nối:</strong> $39/tháng</li>
-                    <li style="margin-bottom:10px">🔹 <strong>Gói Chăm sóc Cộng:</strong> $99/tháng</li>
-                    <li style="margin-bottom:10px">🔹 <strong>Gói Cao cấp:</strong> $249/tháng</li>
+                    <li>🔹 <strong>CVH - Connect:</strong> $39/tháng</li>
+                    <li>🔹 <strong>CVH - Plus:</strong> $99/tháng</li>
+                    <li>🔹 <strong>CVH - Premium:</strong> $249/tháng</li>
                     <li>🔹 <strong>Pay-per-use:</strong> Không bắt buộc đăng ký</li>
                 </ul>
             </div>
@@ -184,470 +209,476 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="card">
-            <h3>Phạm vi nghiên cứu (5 câu hỏi chiến lược)</h3>
+            <h3>Phạm vi nghiên cứu (5 Câu hỏi chiến lược)</h3>
             <ol>
-                <li>Nhu cầu thị trường thực tế?</li>
-                <li>Ai là đối thủ cạnh tranh? Vị thế?</li>
-                <li>Khả năng cạnh tranh về Giá & Chất lượng?</li>
-                <li>Các rào cản tiếp cận?</li>
-                <li>Bối cảnh bảo hiểm y tế?</li>
+                <li><strong>Nhu cầu:</strong> Người Việt tại Mỹ có thực sự cần telehealth bằng tiếng Việt?</li>
+                <li><strong>Đối thủ:</strong> Ai đang phục vụ thị trường này? Vị thế ra sao?</li>
+                <li><strong>Giá & Chất lượng:</strong> CVH có cạnh tranh được không?</li>
+                <li><strong>Rào cản:</strong> Điều gì ngăn cản người dùng tiếp cận?</li>
+                <li><strong>Bảo hiểm:</strong> Bối cảnh bảo hiểm có hỗ trợ không?</li>
             </ol>
         </div>
     </div>
 
     <div id="nhucau" class="tab-content">
-        <h2 class="section-title">1️⃣ Nhu Cầu Thị Trường</h2>
+        <h2>1️⃣ Nhu Cầu Thị Trường: Cơ Hội & Thách Thức</h2>
         
         <div class="grid-3">
-            <div class="card">
-                <span class="stat-big">2.3 Triệu</span>
-                <span class="stat-desc">Người Mỹ gốc Việt (2023)</span>
+            <div class="card" style="text-align: center;">
+                <span class="stat-num">2.3 Tr</span>
+                <span class="stat-label">Người Mỹ gốc Việt</span>
             </div>
-            <div class="card">
-                <span class="stat-big">60%</span>
-                <span class="stat-desc">Tập trung ở 4 bang: CA, TX, VA, WA</span>
+            <div class="card" style="text-align: center;">
+                <span class="stat-num">37%</span>
+                <span class="stat-label">Khả năng tiếng Anh hạn chế (LEP)</span>
             </div>
-            <div class="card">
-                <span class="stat-big">32-37%</span>
-                <span class="stat-desc">Khả năng tiếng Anh hạn chế (LEP)</span>
+            <div class="card" style="text-align: center;">
+                <span class="stat-num">76%</span>
+                <span class="stat-label">Người Mỹ đã dùng Telehealth</span>
             </div>
         </div>
 
         <div class="grid-2">
             <div class="card">
-                <h3>✅ Cơ hội & Tiềm năng</h3>
+                <h3 style="color: var(--success);">✅ Thị Trường Có Tiềm Năng</h3>
+                <h4>Phân bố địa lý (60% tập trung tại 4 bang):</h4>
                 <ul>
-                    <li><strong>Gánh nặng bệnh mãn tính:</strong> Tiểu đường type 2 cao hơn 30-40% so với người da trắng. Tỷ lệ ung thư gan cao gấp 5-7 lần.</li>
-                    <li><strong>Chấp nhận Telehealth:</strong> 76% người Mỹ đã dùng ít nhất 1 lần. 68% người Á Châu hài lòng.</li>
-                    <li><strong>Rào cản ngôn ngữ:</strong> 48% người cao tuổi (65+) khó giao tiếp y tế bằng tiếng Anh.</li>
+                    <li><strong>California:</strong> ~750.000 (Quận Cam, San Jose)</li>
+                    <li><strong>Texas:</strong> ~280.000 (Houston, Dallas)</li>
+                    <li><strong>Virginia/DC:</strong> ~120.000</li>
+                    <li><strong>Washington:</strong> ~90.000</li>
+                </ul>
+                <h4>Gánh nặng bệnh mãn tính cao:</h4>
+                <ul>
+                    <li>Tiểu đường Type 2 cao hơn 30-40% so với người da trắng.</li>
+                    <li>Ung thư gan cao gấp 5-7 lần.</li>
+                    <li>Cao huyết áp ảnh hưởng 35% người trưởng thành.</li>
                 </ul>
             </div>
-            <div class="card" style="border-top: 3px solid var(--accent);">
-                <h3>⚠️ Thách thức</h3>
+            <div class="card">
+                <h3 style="color: var(--accent);">⚠️ Thách Thức</h3>
                 <ul>
-                    <li><strong>Phân mảnh địa lý:</strong> 40% dân số rải rác, gây khó khăn và tốn kém chi phí cấp phép (Licensing).</li>
-                    <li><strong>Thói quen thanh toán:</strong> Người Việt chưa quen mô hình Subscription (chỉ 12-15% người Mỹ dùng).</li>
-                    <li><strong>Khoảng cách công nghệ:</strong> 45% người già thiếu kỹ năng dùng smartphone/video call.</li>
+                    <li><strong>Phân mảnh địa lý:</strong> 40% dân số rải rác 46 bang khác -> Chi phí cấp phép (licensing) cao.</li>
+                    <li><strong>Thói quen thanh toán:</strong> Chỉ 12-15% người Mỹ quen subscription y tế. Người Việt thích trả theo lần/bảo hiểm.</li>
+                    <li><strong>Khoảng cách công nghệ:</strong> 45% người già (65+) thiếu kỹ năng/thiết bị.</li>
                 </ul>
             </div>
         </div>
 
         <div class="box-success">
-            <strong>KẾT LUẬN:</strong> Nhu cầu tồn tại rõ ràng (đặc biệt nhóm LEP, bệnh mãn tính) nhưng cần chiến lược tiếp cận phân tầng theo thế hệ (Generational targeting).
+            <strong>KẾT LUẬN:</strong> Nhu cầu tồn tại rõ ràng (LEP, bệnh mãn tính) nhưng cần chiến lược tiếp cận phân tầng theo thế hệ (Gen 1 vs Gen 1.5/2).
         </div>
     </div>
 
     <div id="doithu" class="tab-content">
-        <h2 class="section-title">2️⃣ Đối Thủ Cạnh Tranh (Phân tích 7Ps)</h2>
-        
+        <h2>2️⃣ Đối Thủ Cạnh Tranh</h2>
         <div class="box-info">
-            <strong>NHẬN ĐỊNH CHUNG:</strong> Không có nền tảng lớn nào tập trung riêng cho người Việt. Thị trường còn trống.
+            <strong>ƯU THẾ CVH:</strong> Không có nền tảng lớn nào tập trung riêng người Việt tại Mỹ (tính đến 12/2024).
         </div>
 
-        <h3>🏆 BẢNG SO SÁNH CHIẾN LƯỢC 7Ps (ƯU TIÊN)</h3>
+        <div class="grid-3">
+            <div class="card">
+                <h4>Nhóm 1: Nền tảng phổ thông (Teladoc, Amwell)</h4>
+                <p><strong>Điểm mạnh:</strong> Quy mô lớn, tích hợp bảo hiểm rộng, công nghệ trưởng thành.</p>
+                <p><strong>Điểm yếu (Cơ hội cho CVH):</strong> Không có bác sĩ Việt, phiên dịch qua điện thoại kém chất lượng, chậm.</p>
+                <p><strong>Giá:</strong> $75-$99/lần (nếu tự trả).</p>
+            </div>
+            <div class="card">
+                <h4>Nhóm 2: One Medical (Amazon)</h4>
+                <p><strong>Điểm mạnh:</strong> Trải nghiệm cao cấp, mô hình Hybrid (Online + Offline).</p>
+                <p><strong>Điểm yếu:</strong> Đắt ($199/năm phí thành viên + phí khám), ít văn phòng tại khu người Việt, không có văn hóa Việt.</p>
+            </div>
+            <div class="card">
+                <h4>Nhóm 3: Phòng khám Việt (Telehealth)</h4>
+                <p><strong>Điểm mạnh:</strong> Uy tín cộng đồng, bác sĩ Việt, hiểu văn hóa.</p>
+                <p><strong>Điểm yếu:</strong> Công nghệ lỗi thời, chỉ phục vụ địa phương, không mở rộng được (scale).</p>
+            </div>
+        </div>
+
+        <h3>Tổng Hợp Cạnh Tranh</h3>
         <div class="table-responsive">
-            <table class="data-table comparison-highlight">
+            <table>
                 <thead>
                     <tr>
-                        <th width="15%">Tiêu chí</th>
-                        <th width="20%" style="background-color: var(--primary);">CVH (Chúng ta)</th>
-                        <th width="20%">Teladoc / Amwell</th>
-                        <th width="15%">K Health</th>
-                        <th width="15%">Phòng khám Việt</th>
-                        <th width="15%">Firefly Health</th>
+                        <th>Loại Đối Thủ</th>
+                        <th>Điểm Mạnh</th>
+                        <th>Điểm Yếu (Cơ hội cho CVH)</th>
+                        <th>Mức Đe Dọa</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Sản phẩm</strong></td>
-                        <td class="cvh-col">Toàn diện + Văn hóa Việt + Đông Y</td>
-                        <td>Toàn diện, chung chung</td>
-                        <td>AI trước, cơ bản</td>
-                        <td>Văn hóa Việt, công nghệ yếu</td>
-                        <td>Văn hóa Á, không cụ thể Việt</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Giá</strong></td>
-                        <td class="cvh-col">$39 - $249/tháng</td>
-                        <td>$79 - $99/lần</td>
-                        <td>$19/tháng (Rẻ)</td>
-                        <td>$40 - $100/lần</td>
-                        <td>$0 (Doanh nghiệp trả)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kênh</strong></td>
-                        <td class="cvh-col">4 Bang trọng điểm</td>
-                        <td>50 Bang</td>
-                        <td>Vài bang</td>
-                        <td>Chỉ địa phương</td>
-                        <td>MA, CA</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Xúc tiến</strong></td>
-                        <td class="cvh-col">Xây dựng cộng đồng</td>
-                        <td>Mạnh với Doanh nghiệp (B2B)</td>
-                        <td>Digital Marketing</td>
-                        <td>Truyền miệng</td>
-                        <td>B2B</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Nhân sự</strong></td>
-                        <td class="cvh-col">Bác sĩ Việt bản ngữ</td>
-                        <td>Không có / Phiên dịch</td>
-                        <td>Không đặc thù</td>
-                        <td>Có bác sĩ Việt</td>
-                        <td>Người Á (Không Việt)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Quy trình</strong></td>
-                        <td class="cvh-col">Đang xây dựng</td>
-                        <td>Trưởng thành</td>
-                        <td>AI + Bác sĩ</td>
-                        <td>Cơ bản/Thủ công</td>
-                        <td>Health Coach</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bằng chứng</strong></td>
-                        <td class="cvh-col">Cần xây dựng</td>
-                        <td>Thương hiệu mạnh</td>
-                        <td>Mới nổi</td>
-                        <td>Uy tín lâu năm</td>
-                        <td>Startup</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <hr>
-
-        <h3>Chi tiết các nhóm đối thủ</h3>
-        
-        <div class="competitor-group">
-            <h4>Nhóm 1: Nền tảng Phổ thông (Mainstream)</h4>
-            <div class="grid-2">
-                <div class="card competitor-card">
-                    <h4>Teladoc Health</h4>
-                    <p><strong>Điểm mạnh:</strong> Leader thị trường, 90k bác sĩ, bảo hiểm rộng.</p>
-                    <p><strong>Điểm yếu:</strong> Không có bác sĩ Việt, phiên dịch qua điện thoại kém chất lượng.</p>
-                    <p><strong>Giá:</strong> $75-$89/lần (tự trả).</p>
-                </div>
-                <div class="card competitor-card">
-                    <h4>Amwell & Doctor on Demand</h4>
-                    <p><strong>Đặc điểm:</strong> Tương tự Teladoc. Amwell mạnh về tích hợp bệnh viện. DoD mạnh về UX.</p>
-                    <p><strong>Giá:</strong> $79-$299/lần.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="competitor-group">
-            <h4>Nhóm 2: Nền tảng hướng đến người Á Châu</h4>
-            <div class="grid-2">
-                <div class="card competitor-card">
-                    <h4>Firefly Health</h4>
-                    <p>Mô hình B2B, tập trung người Hoa/Hàn. Chưa focus người Việt.</p>
-                </div>
-                <div class="card competitor-card">
-                    <h4>Clever Care</h4>
-                    <p>Medicare Advantage Plan. Có hỗ trợ văn hóa nhưng không phải nền tảng Telehealth riêng biệt.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="competitor-group">
-            <h4>Nhóm 3: Phòng khám Việt truyền thống</h4>
-            <div class="card competitor-card">
-                <p>Ví dụ: <strong>Trung tâm Y tế Việt Nam (OC), Phòng khám Houston.</strong></p>
-                <p>✅ Uy tín cộng đồng, bác sĩ Việt.</p>
-                <p>❌ Công nghệ lạc hậu, không scale được, chỉ phục vụ local.</p>
-            </div>
-        </div>
-
-        <div class="competitor-group">
-            <h4>Nhóm 4: Startup Y tế số (Giá rẻ/AI)</h4>
-            <div class="grid-3">
-                <div class="card competitor-card">
-                    <h4>K Health</h4>
-                    <p>$19/tháng. Dùng AI chẩn đoán. Rẻ nhưng thiếu human touch.</p>
-                </div>
-                <div class="card competitor-card">
-                    <h4>PlushCare</h4>
-                    <p>Tập trung kê đơn nhanh. SEO mạnh. $99/lần.</p>
-                </div>
-                <div class="card competitor-card">
-                    <h4>Lemonaid</h4>
-                    <p>Giao thuốc tận nhà. $25/lần. Không khám video kỹ.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="giaca" class="tab-content">
-        <h2 class="section-title">3️⃣ Giá Cả & Chất Lượng</h2>
-        
-        <div class="box-success">
-            <strong>CVH Gói Kết Nối ($39)</strong> là mức giá cạnh tranh nhất thị trường cho việc quản lý bệnh mãn tính liên tục.
-        </div>
-
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Nền tảng</th>
-                        <th>Mô hình</th>
-                        <th>Chi phí tháng</th>
-                        <th>Chi tiết</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background-color: #e3f2fd; font-weight: bold;">
-                        <td>CVH - Kết nối</td>
-                        <td>Đăng ký</td>
-                        <td>$39</td>
-                        <td>Unlimited Chat + 2 Video/năm. Rất tốt cho bệnh mãn tính.</td>
-                    </tr>
-                    <tr>
-                        <td>CVH - Cộng</td>
-                        <td>Đăng ký</td>
-                        <td>$99</td>
-                        <td>4 Video/năm. Tầm trung.</td>
+                        <td>Nền tảng lớn (Teladoc)</td>
+                        <td>Quy mô, bảo hiểm, thương hiệu</td>
+                        <td>Không bác sĩ Việt, phiên dịch kém</td>
+                        <td class="warn">Trung bình</td>
                     </tr>
                     <tr>
                         <td>One Medical</td>
-                        <td>Đăng ký</td>
-                        <td>~$16-25</td>
-                        <td>Chủ yếu là phí membership để được đặt lịch, vẫn phải trả tiền khám/bảo hiểm.</td>
+                        <td>Trải nghiệm cao cấp</td>
+                        <td>Đắt, không văn hóa Việt</td>
+                        <td class="check">Thấp</td>
+                    </tr>
+                    <tr>
+                        <td>Phòng khám Việt</td>
+                        <td>Tin cậy, văn hóa</td>
+                        <td>Công nghệ yếu, chỉ local</td>
+                        <td class="warn">Thấp-TB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><em>CVH lấp đầy khoảng trống giữa Teladoc (công nghệ tốt nhưng thiếu văn hóa) và Phòng khám Việt (có văn hóa nhưng công nghệ yếu).</em></p>
+    </div>
+
+    <div id="giaca" class="tab-content">
+        <h2>3️⃣ Giá Cả & Chất Lượng (Chi tiết)</h2>
+        
+        <h3>So Sánh Giá Đăng Ký Hàng Tháng</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nền tảng</th>
+                        <th>Gói Cơ bản</th>
+                        <th>Gói Trung</th>
+                        <th>Gói Cao</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #e8f4fd; font-weight: bold;">
+                        <td>CVH</td>
+                        <td>$39 (Connect)</td>
+                        <td>$99 (Plus)</td>
+                        <td>$249 (Premium)</td>
+                        <td>Toàn diện nhất</td>
+                    </tr>
+                    <tr>
+                        <td>Teladoc/Amwell</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>Chỉ trả theo lần ($75-99/lần)</td>
                     </tr>
                     <tr>
                         <td>MDLive</td>
-                        <td>Hybrid</td>
-                        <td>$8.25 + phí khám</td>
-                        <td>Rẻ nhưng nhiều phí ẩn.</td>
+                        <td>$8.25</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>+ Phí khám $0-82/lần</td>
                     </tr>
                     <tr>
-                        <td>Teladoc</td>
-                        <td>Per-visit</td>
+                        <td>One Medical</td>
+                        <td>$16.58 ($199/năm)</td>
                         <td>N/A</td>
-                        <td>$79-99/lần. Đắt nếu dùng thường xuyên.</td>
+                        <td>N/A</td>
+                        <td>+ Đồng thanh toán bảo hiểm</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="grid-2">
-            <div class="card">
-                <h3>Khả năng chi trả</h3>
-                <p><strong>62%</strong> người Việt sẵn sàng trả $30-50/tháng cho dịch vụ tiếng Việt (theo khảo sát 2024).</p>
-                <p>Mức giá $39 của CVH nằm ngay trong "vùng sẵn sàng chi trả" này.</p>
-            </div>
-            <div class="card">
-                <h3>Yêu cầu chất lượng</h3>
-                <p>Để biện minh cho giá trị, CVH cần:</p>
-                <ul>
-                    <li>Thời gian phản hồi < 30 phút.</li>
-                    <li>Sự hài lòng > 4.5/5 sao.</li>
-                    <li>Có dữ liệu lâm sàng (kiểm soát HbA1c, Huyết áp).</li>
+        <h3>Bảng Tổng Hợp Dịch Vụ & Lợi Thế Cạnh Tranh</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dịch vụ</th>
+                        <th>CVH</th>
+                        <th>Teladoc</th>
+                        <th>One Med</th>
+                        <th>Phòng Khám Việt</th>
+                        <th>Lợi thế CVH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1. Onboarding</td><td class="check">✅</td><td class="cross">❌</td><td class="warn">⚠️</td><td class="cross">❌</td><td><strong>AI Onboarding (Độc quyền)</strong></td></tr>
+                    <tr><td>2. Medical Library</td><td class="check">✅</td><td class="warn">⚠️</td><td class="warn">⚠️</td><td class="cross">❌</td><td>400+ chủ đề song ngữ</td></tr>
+                    <tr><td>3. Chat Y tế</td><td class="check">✅</td><td class="warn">⚠️</td><td class="check">✅</td><td class="cross">❌</td><td>Tiếng Việt + AI</td></tr>
+                    <tr><td>4. Truy cập 24/7</td><td class="check">✅</td><td class="check">✅</td><td class="warn">⚠️</td><td class="cross">❌</td><td>Bác sĩ Việt 24/7</td></tr>
+                    <tr><td>5. Video Visit</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="warn">⚠️</td><td>Bác sĩ Việt bản ngữ</td></tr>
+                    <tr><td>6. Quản lý mãn tính</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="warn">⚠️</td><td>Hiểu văn hóa/lối sống</td></tr>
+                    <tr><td>7. Specialist Referral</td><td class="warn">⚠️</td><td class="check">✅</td><td class="check">✅</td><td class="warn">⚠️</td><td>Đang xây mạng lưới</td></tr>
+                    <tr><td>8. CMR (Review thuốc)</td><td class="check">✅</td><td class="cross">❌</td><td class="warn">⚠️</td><td class="cross">❌</td><td><strong>Dược sĩ Việt (Độc quyền)</strong></td></tr>
+                    <tr><td>9. TMR (Review đích)</td><td class="check">✅</td><td class="cross">❌</td><td class="cross">❌</td><td class="cross">❌</td><td><strong>Độc quyền</strong></td></tr>
+                    <tr><td>10. Lab Advisory</td><td class="check">✅</td><td class="cross">❌</td><td class="warn">⚠️</td><td class="cross">❌</td><td>AI giải thích + Văn hóa</td></tr>
+                    <tr><td>11. Khám hằng năm</td><td class="check">✅</td><td class="warn">⚠️</td><td class="check">✅</td><td class="check">✅</td><td>Virtual với BS Việt</td></tr>
+                    <tr><td>12. Self-360</td><td class="check">✅</td><td class="check">✅</td><td class="cross">❌</td><td class="cross">❌</td><td>Tiếng Việt</td></tr>
+                    <tr><td>13. Health Plan</td><td class="check">✅</td><td class="warn">⚠️</td><td class="warn">⚠️</td><td class="cross">❌</td><td>Kế hoạch cá nhân hóa</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>💰 Phân Tích Giá Trị & Lợi Nhuận Đầu Tư (ROI)</h3>
+        <div class="grid-3">
+            <div class="roi-card">
+                <div class="roi-header">CVH - Connect</div>
+                <div class="roi-price">$39<span style="font-size:0.5em; font-weight:normal">/tháng</span></div>
+                <div class="roi-value">Tổng giá trị thị trường: <strong>$260 - $365</strong></div>
+                <ul style="font-size: 0.9em; padding-left: 20px;">
+                    <li>AI Health Overview ($200+)</li>
+                    <li>Medical Library ($10)</li>
+                    <li>Chat Y tế ($20)</li>
                 </ul>
+                <div class="roi-footer">ROI: 6.7 - 9.4 lần ✅</div>
+                <p style="font-size:0.85rem; text-align:center; margin-top:10px"><em>Giá trị đặc biệt. Rẻ hơn 1 lần khám Teladoc.</em></p>
+            </div>
+
+            <div class="roi-card" style="border-color: var(--secondary); background: #fdfdfd;">
+                <div class="roi-header">CVH - Plus</div>
+                <div class="roi-price">$99<span style="font-size:0.5em; font-weight:normal">/tháng</span></div>
+                <div class="roi-value">Tổng giá trị thị trường: <strong>$514 - $681</strong></div>
+                <ul style="font-size: 0.9em; padding-left: 20px;">
+                    <li>Gồm tất cả Connect</li>
+                    <li>Video Visit không giới hạn</li>
+                    <li>Quản lý mãn tính ($100+)</li>
+                    <li>Review thuốc (CMR/TMR)</li>
+                </ul>
+                <div class="roi-footer">ROI: 5.2 - 6.9 lần ✅</div>
+                <p style="font-size:0.85rem; text-align:center; margin-top:10px"><em>Tốt nhất cho bệnh nhân mãn tính.</em></p>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-header">CVH - Premium</div>
+                <div class="roi-price">$249<span style="font-size:0.5em; font-weight:normal">/tháng</span></div>
+                <div class="roi-value">Tổng giá trị thị trường: <strong>$549 - $799</strong></div>
+                <ul style="font-size: 0.9em; padding-left: 20px;">
+                    <li>Precision Lab Advisory</li>
+                    <li>Kế hoạch sức khỏe cá nhân</li>
+                    <li>Tính năng cao cấp</li>
+                </ul>
+                <div class="roi-footer" style="color:orange">ROI: 2.2 - 3.2 lần ⚠️</div>
+                <p style="font-size:0.85rem; text-align:center; margin-top:10px"><em>Rủi ro cao. Khuyến nghị test giá $199.</em></p>
             </div>
         </div>
+
+        <h3>Chỉ Số Chất Lượng Mục Tiêu</h3>
+        <p>CVH hướng tới các chỉ số vượt trội so với đối thủ:</p>
+        <ul style="columns: 2;">
+            <li><strong>Thời gian tư vấn:</strong> 20-25 phút (vs 12 phút của Teladoc)</li>
+            <li><strong>Hài lòng bệnh nhân:</strong> 90-95% (nhờ ngôn ngữ/văn hóa)</li>
+            <li><strong>Khả dụng:</strong> < 15 phút (24/7)</li>
+            <li><strong>NPS:</strong> > 70</li>
+        </ul>
     </div>
 
     <div id="raocan" class="tab-content">
-        <h2 class="section-title">4️⃣ Rào Cản & Giải Pháp</h2>
-        
+        <h2>4️⃣ Rào Cản & Giải Pháp Đa Tầng</h2>
         <div class="grid-2">
             <div class="card">
                 <h4>1. Ngôn ngữ & Phiên dịch</h4>
-                <p>❌ App Mỹ dùng phiên dịch kém.</p>
-                <p>✅ <strong>CVH:</strong> Bác sĩ Việt bản ngữ. USP lớn nhất.</p>
+                <p>Nền tảng khác chỉ có phiên dịch (chậm/kém). <br><strong>Giải pháp CVH:</strong> Bác sĩ Việt bản ngữ (USP lớn nhất).</p>
             </div>
             <div class="card">
                 <h4>2. Văn hóa & Niềm tin</h4>
-                <p>❌ Kỳ thị bệnh tâm thần, thích Đông Y, thích khám "sờ nắn".</p>
-                <p>✅ <strong>CVH:</strong> Tích hợp Đông Y, bảo mật cao giảm kỳ thị.</p>
+                <p>Kỳ thị bệnh tâm thần (71%), thích Đông Y. <br><strong>Giải pháp CVH:</strong> Bảo mật cao, tích hợp Đông Y evidence-based.</p>
             </div>
             <div class="card">
-                <h4>3. Công nghệ (Digital Divide)</h4>
-                <p>❌ 45% người già không thạo công nghệ.</p>
-                <p>✅ <strong>CVH:</strong> Hỗ trợ setup cho con cái (Gen 2), support 24/7 qua điện thoại.</p>
+                <h4>3. Công nghệ (Người cao tuổi)</h4>
+                <p>45% người già không thạo công nghệ. <br><strong>Giải pháp CVH:</strong> AI Onboarding đơn giản, Support 24/7 qua điện thoại, hướng dẫn cho con cái (Gen 2).</p>
             </div>
             <div class="card">
                 <h4>4. Chất lượng & An toàn</h4>
-                <p>❌ Sợ chẩn đoán sai, sợ lộ dữ liệu.</p>
-                <p>✅ <strong>CVH:</strong> Minh bạch HIPAA, show bằng cấp bác sĩ.</p>
+                <p>Lo ngại chẩn đoán sai, bảo mật dữ liệu. <br><strong>Giải pháp CVH:</strong> Minh bạch HIPAA, show chứng chỉ bác sĩ, quy định rõ khi nào cần khám trực tiếp.</p>
             </div>
             <div class="card">
-                <h4>5. Quy định (Cấp phép)</h4>
-                <p>❌ Phải có license từng bang. Chi phí cao.</p>
-                <p>✅ <strong>CVH:</strong> Ưu tiên 4 bang chính (60% market) trước.</p>
+                <h4>5. Quy định & Cấp phép</h4>
+                <p>Chi phí license cao ($500-2000/bang). <br><strong>Giải pháp CVH:</strong> Tập trung 4 bang chính (60% market) trước.</p>
             </div>
             <div class="card">
                 <h4>6. Tài chính</h4>
-                <p>❌ 11-13% không bảo hiểm.</p>
-                <p>✅ <strong>CVH:</strong> Gói $39 thấp (~0.6% thu nhập trung bình).</p>
+                <p>11-13% không bảo hiểm. <br><strong>Giải pháp CVH:</strong> Gói $39/tháng (chỉ 0.6% thu nhập trung bình).</p>
             </div>
         </div>
     </div>
 
     <div id="baohiem" class="tab-content">
-        <h2 class="section-title">5️⃣ Chiến Lược Bảo Hiểm</h2>
-        
+        <h2>5️⃣ Bảo Hiểm & Chính Sách</h2>
         <div class="box-info">
-            <strong>MÔ HÌNH KHUYẾN NGHỊ: HYBRID (KẾT HỢP)</strong><br>
-            Kết hợp thu phí Đăng ký (Subscription) + Bill bảo hiểm các dịch vụ được hoàn trả cao.
+            <strong>MÔ HÌNH KHUYẾN NGHỊ: KẾT HỢP (HYBRID)</strong><br>
+            1. Đăng ký ($39-$249) để có doanh thu ổn định.<br>
+            2. Bill bảo hiểm các dịch vụ được hoàn trả cao (Medicare).
         </div>
 
-        <div class="grid-3" style="margin-top: 20px;">
+        <div class="grid-3">
             <div class="card">
                 <h3>Medicare (65+)</h3>
-                <p style="color:var(--success)"><strong>Tiềm năng nhất</strong></p>
+                <p class="check">Cơ hội lớn nhất</p>
                 <ul>
-                    <li>Chi trả Telehealth vĩnh viễn.</li>
-                    <li><strong>Mỏ vàng:</strong> Quản lý bệnh mãn tính (CCM) ($42-$136/tháng).</li>
-                    <li>Khám sức khỏe hàng năm (AWV) được trả 100%.</li>
+                    <li>Telehealth được chi trả vĩnh viễn.</li>
+                    <li><strong>Quản lý mãn tính (CCM):</strong> $42-$136/tháng.</li>
+                    <li><strong>Khám hằng năm (AWV):</strong> Chi trả 100% ($115-$175).</li>
                 </ul>
             </div>
             <div class="card">
-                <h3>Medicaid (Thu nhập thấp)</h3>
+                <h3>Medicaid</h3>
                 <ul>
                     <li>Phụ thuộc từng bang.</li>
-                    <li><strong>CA (Medi-Cal):</strong> Chi trả tốt.</li>
-                    <li><strong>TX:</strong> Hạn chế hơn.</li>
-                    <li>Thủ tục phức tạp, hoàn tiền chậm.</li>
+                    <li><strong>California (Medi-Cal):</strong> Chi trả toàn diện, ngang bằng.</li>
+                    <li><strong>Texas:</strong> Hạn chế hơn.</li>
                 </ul>
             </div>
             <div class="card">
                 <h3>Bảo hiểm Tư nhân</h3>
                 <ul>
-                    <li>BlueCross, UnitedHealth, Aetna.</li>
-                    <li><strong>Rào cản:</strong> Phải Credentialing (3-6 tháng).</li>
-                    <li>Yêu cầu "In-network" khắt khe.</li>
+                    <li>BlueCross, United, Aetna, Cigna đều chi trả.</li>
+                    <li>⚠️ Phải xác thực (Credentialing) mất 3-6 tháng.</li>
                 </ul>
             </div>
         </div>
 
-        <div class="box-warn">
-            <strong>Lộ trình:</strong> Giai đoạn 1 (0-6 tháng) chỉ thu phí Subscription -> Giai đoạn 2 (6-12 tháng) mới tích hợp Medicare/Medi-Cal.
-        </div>
+        <h3>Lộ Trình Bảo Hiểm</h3>
+        <ul>
+            <li><strong>Giai đoạn 1 (0-6 tháng):</strong> 100% Đăng ký (Subscription).</li>
+            <li><strong>Giai đoạn 2 (6-12 tháng):</strong> Xác thực Medicare + Medi-Cal (CA).</li>
+            <li><strong>Giai đoạn 3 (12-24 tháng):</strong> Mở rộng bảo hiểm thương mại.</li>
+        </ul>
     </div>
 
-    <div id="danhgia" class="tab-content">
-        <h2 class="section-title">💡 Đánh Giá & Đề Xuất</h2>
+    <div id="khuyennghi" class="tab-content">
+        <h2>🎯 Đánh Giá & Khuyến Nghị Cuối Cùng</h2>
         
-        <div class="card" style="border-left: 5px solid var(--success);">
-            <h3>Đánh giá cơ hội: 4/5 sao ⭐⭐⭐⭐</h3>
-            <p>Lợi thế người đi đầu (First-mover) trong một thị trường ngách chưa được khai thác nhưng đầy tiềm năng.</p>
+        <div class="box-success" style="font-size: 1.1em;">
+            <strong>KẾT LUẬN: ⭐⭐⭐⭐☆ (4/5) - TIẾN HÀNH VỚI CHIẾN LƯỢC RÕ RÀNG</strong>
         </div>
 
         <div class="grid-2">
             <div class="card">
-                <h4>✅ Điểm mạnh</h4>
+                <h3>✅ Điểm Mạnh</h3>
                 <ul>
-                    <li>Nhu cầu lớn (LEP, bệnh mãn tính).</li>
-                    <li>Giá $39 cạnh tranh.</li>
-                    <li>Sản phẩm Unique (Văn hóa + Đông Y).</li>
-                    <li>Pháp lý ủng hộ Telehealth.</li>
+                    <li>Lợi thế người đi đầu (First-mover).</li>
+                    <li>Nhu cầu rõ ràng (LEP, bệnh mãn tính).</li>
+                    <li>Định giá cạnh tranh (ROI tốt).</li>
+                    <li>Sản phẩm độc đáo (Đông Y, Dược sĩ review thuốc).</li>
                 </ul>
             </div>
             <div class="card">
-                <h4>⚠️ Rủi ro</h4>
+                <h3>⚠️ Rủi Ro</h3>
                 <ul>
                     <li>Thị trường phân mảnh địa lý.</li>
-                    <li>Chi phí giấy phép đa bang cao.</li>
-                    <li>Brand mới, chưa có Trust.</li>
-                    <li>Đối thủ lớn có thể nhảy vào.</li>
+                    <li>Chi phí cấp phép đa bang cao.</li>
+                    <li>Xây dựng thương hiệu từ con số 0.</li>
+                    <li>Đối thủ lớn (Teladoc) có thể nhảy vào.</li>
                 </ul>
             </div>
         </div>
 
-        <h3>Khuyến nghị chiến lược</h3>
-        <div class="box-alert">
-            <ul style="margin:0">
-                <li><strong>BẮT BUỘC:</strong> Ưu tiên California (60% thị trường) trước.</li>
-                <li><strong>BẮT BUỘC:</strong> Làm tốt trải nghiệm Onboarding cho người già.</li>
-                <li><strong>BẮT BUỘC:</strong> Xây dựng lòng tin qua cộng đồng (Chùa, Hội đoàn).</li>
-                <li><strong>BẮT BUỘC:</strong> Theo dõi sát sao chỉ số lâm sàng.</li>
-            </ul>
+        <h3>Điều Kiện Thành Công (Bắt Buộc)</h3>
+        <div class="box-warn">
+            <ol>
+                <li><strong>Ưu tiên California trước</strong> (750k dân, 32% thị trường).</li>
+                <li><strong>Hoàn thiện Onboarding</strong> cho người già & người kém tiếng Anh.</li>
+                <li><strong>Xây dựng lòng tin</strong> qua cộng đồng, truyền miệng.</li>
+                <li><strong>Mô hình kết hợp:</strong> Subscription + Bảo hiểm.</li>
+                <li><strong>Theo dõi kết quả:</strong> Hài lòng bệnh nhân & chỉ số lâm sàng.</li>
+            </ol>
+        </div>
+
+        <h3>Các Bước Tiếp Theo</h3>
+        <div class="grid-3">
+            <div class="card">
+                <h4>Ngay lập tức (Tháng 1-3)</h4>
+                <ul>
+                    <li>Nghiên cứu thị trường sơ cấp (Khảo sát 500+ người).</li>
+                    <li>Hoàn thiện sản phẩm (Core features).</li>
+                    <li>Bắt đầu xin giấy phép y khoa tại CA.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Gần (Tháng 4-6)</h4>
+                <ul>
+                    <li>Xây dựng MVP.</li>
+                    <li>Tuyển dụng bác sĩ Việt (có bằng CA).</li>
+                    <li>Beta test 50-100 users.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Ra mắt (Tháng 7-12)</h4>
+                <ul>
+                    <li>Soft launch tại California.</li>
+                    <li>Hợp tác cộng đồng.</li>
+                    <li>Bắt đầu xác thực Medicare.</li>
+                </ul>
+            </div>
         </div>
         
-        <p style="margin-top:20px"><strong>Vốn cần thiết:</strong> $2-4 Triệu (Năm 1-2). <strong>Thời gian hòa vốn:</strong> 24-36 tháng.</p>
+        <p><strong>Vốn cần thiết:</strong> $2-4 Triệu (Năm 1-2). <strong>Hòa vốn:</strong> 24-36 tháng.</p>
     </div>
 
     <div id="phuluc" class="tab-content">
-        <h2 class="section-title">📚 Hạn Chế & Phụ Lục</h2>
+        <h2>📚 Phụ Lục & Nguồn Dữ Liệu</h2>
         
-        <div class="card">
-            <h3>Hạn chế của báo cáo</h3>
-            <ul>
-                <li>Dữ liệu thứ cấp, chưa có khảo sát sơ cấp trực tiếp.</li>
-                <li>Ước tính khả năng chi trả dựa trên khảo sát chung.</li>
-                <li>Thiếu dữ liệu nội bộ về lộ trình của đối thủ lớn.</li>
-            </ul>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Hạn chế dữ liệu</h3>
+                <ul>
+                    <li>Chưa có khảo sát sơ cấp trực tiếp.</li>
+                    <li>Ước tính khả năng chi trả dựa trên khảo sát chung.</li>
+                    <li>Thông tin đối thủ tính đến Q4/2024.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Nghiên cứu bổ sung</h3>
+                <ul>
+                    <li><strong>Ưu tiên 1:</strong> Khảo sát 500+ người Việt tại Mỹ (Ngân sách $15-25k).</li>
+                    <li><strong>Ưu tiên 1:</strong> Mystery Shopping đối thủ ($5-10k).</li>
+                    <li><strong>Ưu tiên 2:</strong> Theo dõi hành vi người dùng sau launch.</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Nghiên cứu đề xuất tiếp theo</h3>
-            <ul>
-                <li>Khảo sát 500+ người dùng mục tiêu ($15-25k).</li>
-                <li>Mystery Shopping đối thủ ($5-10k).</li>
-                <li>Theo dõi hành vi người dùng sau launch.</li>
-            </ul>
-        </div>
-
-        <h3>Nguồn dữ liệu chính (2023-2025)</h3>
-        <ul style="font-size: 0.9rem;">
-            <li>Cục Điều tra Dân số Hoa Kỳ (ACS 2023)</li>
-            <li>CMS (Medicare Policy 2024)</li>
-            <li>McKinsey & Rock Health (Telehealth Trends 2024)</li>
-            <li>Kaiser Family Foundation (KFF 2024)</li>
+        <h3>Nguồn tham khảo chính</h3>
+        <ul style="font-size: 0.9em;">
+            <li>Cục Điều tra Dân số Hoa Kỳ (2023)</li>
+            <li>CMS - Chính sách Telehealth Medicare (2024)</li>
+            <li>CDC REACH Program (2023)</li>
+            <li>McKinsey & Rock Health Reports (2024)</li>
+            <li>J.D. Power Patient Satisfaction (2024)</li>
             <li>Pew Research Center (2024)</li>
         </ul>
+
+        <div class="box-info">
+            <strong>Liên hệ:</strong> Ruby - Chuyên viên Nghiên cứu Thị trường CVH<br>
+            Sẵn sàng hỗ trợ các quyết định chiến lược tiếp theo.
+        </div>
     </div>
 
 </div>
 
 <footer>
-    <p>Báo cáo nội bộ CVH Market Research v2.0</p>
-    <p>Vui lòng không chia sẻ ra bên ngoài.</p>
+    <p>Báo Cáo Nghiên Cứu Thị Trường CVH - Phiên bản 2.0 (04/12/2025)</p>
+    <p><em>Tài liệu lưu hành nội bộ. Vui lòng không sao chép.</em></p>
 </footer>
 
 <script>
     function openTab(tabName) {
         var i;
         var x = document.getElementsByClassName("tab-content");
-        var buttons = document.getElementsByClassName("nav-btn");
+        var buttons = document.getElementsByClassName("tab-btn");
         
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
             x[i].classList.remove("active");
         }
-        
         for (i = 0; i < buttons.length; i++) {
             buttons[i].classList.remove("active");
         }
         
         document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName).classList.add("active");
         
-        // Find the button that called this function and add active class
-        // Simple iteration to match button text or index could work, 
-        // but here we rely on the onclick binding order matching strictly isn't necessary 
-        // if we pass 'event', but to keep it simple:
+        // Active button highlight logic
+        // Simple mapping based on known order, or find button by onclick text
+        // Here we just re-loop to match the onclick attribute
+        for (i = 0; i < buttons.length; i++) {
+            if(buttons[i].getAttribute('onclick').includes(tabName)) {
+                buttons[i].classList.add("active");
+            }
+        }
         
-        // Re-highlight the correct button based on the mapping
-        var btnIndex = 0;
-        if(tabName === 'tongquan') btnIndex = 0;
-        if(tabName === 'nhucau') btnIndex = 1;
-        if(tabName === 'doithu') btnIndex = 2;
-        if(tabName === 'giaca') btnIndex = 3;
-        if(tabName === 'raocan') btnIndex = 4;
-        if(tabName === 'baohiem') btnIndex = 5;
-        if(tabName === 'danhgia') btnIndex = 6;
-        if(tabName === 'phuluc') btnIndex = 7;
-        
-        buttons[btnIndex].classList.add("active");
-        
+        // Scroll to top of container
         window.scrollTo(0, 0);
     }
 </script>

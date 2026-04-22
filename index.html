@@ -163,18 +163,21 @@
   }
 
   /* ── TABLE ── */
-  .table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: 0 2px 20px rgba(15,45,74,0.08); }
-  table { border-collapse: collapse; width: 100%; background: #fff; font-size: 12.5px; }
+  .table-wrap { overflow-x: hidden; border-radius: 12px; box-shadow: 0 2px 20px rgba(15,45,74,0.08); width: 100%; }
+  table { border-collapse: collapse; width: 100%; table-layout: fixed; background: #fff; font-size: 11.5px; }
   thead th {
     background: var(--navy);
     color: #fff;
-    padding: 11px 13px;
+    padding: 9px 10px;
     text-align: left;
     font-weight: 600;
-    font-size: 11.5px;
-    white-space: nowrap;
-    letter-spacing: 0.3px;
+    font-size: 11px;
+    white-space: normal;
+    word-break: break-word;
+    letter-spacing: 0.2px;
     border-right: 1px solid rgba(255,255,255,0.08);
+    vertical-align: bottom;
+    line-height: 1.4;
   }
   thead th:first-child { border-radius: 12px 0 0 0; }
   thead th:last-child { border-radius: 0 12px 0 0; border-right: none; }
@@ -182,11 +185,13 @@
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: #f7fbff; }
   tbody td {
-    padding: 10px 13px;
+    padding: 9px 10px;
     vertical-align: top;
-    line-height: 1.55;
+    line-height: 1.5;
     border-right: 1px solid var(--border);
     color: var(--text-primary);
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   tbody td:last-child { border-right: none; }
 
@@ -196,11 +201,13 @@
     align-items: center;
     gap: 4px;
     border-radius: 100px;
-    padding: 3px 10px;
-    font-size: 10.5px;
+    padding: 3px 8px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
+    letter-spacing: 0.2px;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.4;
   }
   .badge-primary { background: #d4f1ee; color: #0a6b60; }
   .badge-secondary { background: #e9e5f8; color: #5545a0; }
@@ -369,6 +376,22 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col style="width:12%"><!-- Kênh -->
+        <col style="width:6%"><!-- Loại -->
+        <col style="width:6%"><!-- Team -->
+        <col style="width:8%"><!-- Ưu tiên -->
+        <col style="width:4%"><!-- Tốc độ -->
+        <col style="width:4%"><!-- Khả thi -->
+        <col style="width:4%"><!-- Trust VN -->
+        <col style="width:4%"><!-- CAC hiệu quả -->
+        <col style="width:4%"><!-- Scalability -->
+        <col style="width:7%"><!-- CAC dự kiến -->
+        <col style="width:9%"><!-- Conversion -->
+        <col style="width:9%"><!-- Revenue -->
+        <col style="width:6%"><!-- Dịch vụ -->
+        <col style="width:17%"><!-- Ghi chú -->
+      </colgroup>
       <thead>
         <tr>
           <th>Kênh</th>
@@ -379,7 +402,7 @@
           <th>Khả thi</th>
           <th>Trust VN</th>
           <th>CAC hiệu quả</th>
-          <th>Scalability</th>
+          <th>Scale</th>
           <th>CAC dự kiến</th>
           <th>Conversion dự kiến</th>
           <th>Revenue/BN/năm</th>
@@ -582,16 +605,30 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col style="width:11%"><!-- Kênh -->
+        <col style="width:9%"><!-- Ưu tiên -->
+        <col style="width:11%"><!-- ICP -->
+        <col style="width:4%"><!-- Tốc độ -->
+        <col style="width:4%"><!-- Khả thi -->
+        <col style="width:4%"><!-- Trust -->
+        <col style="width:4%"><!-- CAC hiệu quả -->
+        <col style="width:4%"><!-- Scale -->
+        <col style="width:8%"><!-- CAC dự kiến -->
+        <col style="width:9%"><!-- Conversion -->
+        <col style="width:9%"><!-- Revenue -->
+        <col style="width:23%"><!-- Risk -->
+      </colgroup>
       <thead>
         <tr>
           <th>Kênh</th>
           <th>Ưu tiên</th>
           <th>ICP phù hợp</th>
-          <th>Tốc độ<br>có BN đầu tiên</th>
-          <th>Khả thi<br>2-team</th>
-          <th>Trust<br>người Việt</th>
-          <th>CAC<br>hiệu quả</th>
-          <th>Scale<br>6 tháng</th>
+          <th>Tốc độ có BN đầu tiên</th>
+          <th>Khả thi 2-team</th>
+          <th>Trust người Việt</th>
+          <th>CAC hiệu quả</th>
+          <th>Scale 6 tháng</th>
           <th>CAC dự kiến</th>
           <th>Conversion dự kiến</th>
           <th>Revenue / BN / năm</th>
@@ -602,7 +639,7 @@
         <tr>
           <td><strong>Hospital discharge (TCM)</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Bà Thu (dual eligible, vừa xuất viện)<br>Bà Lan (hospital-triggered, family-managed)</td>
+          <td style="font-size:11px">Bà Thu (dual eligible, vừa xuất viện)<br>Bà Lan (hospital-triggered, family-managed)</td>
           <td><span class="score score-9">9</span></td>
           <td><span class="score score-10">10</span></td>
           <td><span class="score score-10">10</span></td>
@@ -616,7 +653,7 @@
         <tr>
           <td><strong>Vietnamese PCP / specialist referral</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Ông Minh (67–72, multiple chronic, đang có PCP người Việt)<br>Bà Lan (via con cái initiate với PCP quen)</td>
+          <td style="font-size:11px">Ông Minh (67–72, multiple chronic, đang có PCP người Việt)<br>Bà Lan (via con cái initiate với PCP quen)</td>
           <td><span class="score score-6">6</span></td>
           <td><span class="score score-10">10</span></td>
           <td><span class="score score-10">10</span></td>
@@ -630,7 +667,7 @@
         <tr>
           <td><strong>Vietnamese pharmacies</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Bà Thu (≥9 thuốc, dual eligible)<br>Bà Lan (lấy thuốc đều tại nhà thuốc VN)<br>Tất cả BN có ≥5 Rx Part D</td>
+          <td style="font-size:11px">Bà Thu (≥9 thuốc, dual eligible)<br>Bà Lan (lấy thuốc đều tại nhà thuốc VN)<br>Tất cả BN có ≥5 Rx Part D</td>
           <td><span class="score score-8">8</span></td>
           <td><span class="score score-9">9</span></td>
           <td><span class="score score-10">10</span></td>
@@ -644,7 +681,7 @@
         <tr>
           <td><strong>Hospital community benefit contracts</strong></td>
           <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
-          <td style="font-size:11.5px">High-risk VN patients đã trong hospital system<br>Dual eligible có medical complexity cao</td>
+          <td style="font-size:11px">High-risk VN patients đã trong hospital system<br>Dual eligible có medical complexity cao</td>
           <td><span class="score score-3">3</span></td>
           <td><span class="score score-7">7</span></td>
           <td><span class="score score-8">8</span></td>
@@ -658,7 +695,7 @@
         <tr>
           <td><strong>Social workers / case managers</strong></td>
           <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
-          <td style="font-size:11.5px">Elderly VN sống một mình, complex social circumstances<br>Bà Thu type (không có caregiver, dual eligible)</td>
+          <td style="font-size:11px">Elderly VN sống một mình, complex social circumstances<br>Bà Thu type (không có caregiver, dual eligible)</td>
           <td><span class="score score-6">6</span></td>
           <td><span class="score score-8">8</span></td>
           <td><span class="score score-7">7</span></td>
@@ -687,16 +724,30 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col style="width:11%"><!-- Kênh -->
+        <col style="width:9%"><!-- Ưu tiên -->
+        <col style="width:11%"><!-- ICP -->
+        <col style="width:4%"><!-- Tốc độ -->
+        <col style="width:4%"><!-- Khả thi -->
+        <col style="width:4%"><!-- Trust -->
+        <col style="width:4%"><!-- CAC hiệu quả -->
+        <col style="width:4%"><!-- Scale -->
+        <col style="width:8%"><!-- CAC dự kiến -->
+        <col style="width:9%"><!-- Conversion -->
+        <col style="width:9%"><!-- Revenue -->
+        <col style="width:23%"><!-- Risk -->
+      </colgroup>
       <thead>
         <tr>
           <th>Kênh</th>
           <th>Ưu tiên</th>
           <th>ICP phù hợp</th>
-          <th>Tốc độ<br>có BN đầu tiên</th>
-          <th>Khả thi<br>2-team</th>
-          <th>Trust<br>người Việt</th>
-          <th>CAC<br>hiệu quả</th>
-          <th>Scale<br>6 tháng</th>
+          <th>Tốc độ có BN đầu tiên</th>
+          <th>Khả thi 2-team</th>
+          <th>Trust người Việt</th>
+          <th>CAC hiệu quả</th>
+          <th>Scale 6 tháng</th>
           <th>CAC dự kiến</th>
           <th>Conversion dự kiến</th>
           <th>Revenue / BN / năm</th>
@@ -707,7 +758,7 @@
         <tr>
           <td><strong>Vietnamese senior centers</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Bà Lan (72, đi senior center hàng tuần)<br>Bà Thu (71, social isolation, community-dependent)<br>Tất cả elderly VN thiếu digital access</td>
+          <td style="font-size:11px">Bà Lan (72, đi senior center hàng tuần)<br>Bà Thu (71, social isolation, community-dependent)<br>Tất cả elderly VN thiếu digital access</td>
           <td><span class="score score-8">8</span></td>
           <td><span class="score score-10">10</span></td>
           <td><span class="score score-8">8</span></td>
@@ -721,7 +772,7 @@
         <tr>
           <td><strong>Facebook groups organic</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Chị Hoa (41, kỹ sư, caregiver cho ba mẹ)<br>Ông Minh (67, Facebook daily user)<br>Anh Tuấn (36, remote caregiver at Seattle)</td>
+          <td style="font-size:11px">Chị Hoa (41, kỹ sư, caregiver cho ba mẹ)<br>Ông Minh (67, Facebook daily user)<br>Anh Tuấn (36, remote caregiver at Seattle)</td>
           <td><span class="score score-10">10</span></td>
           <td><span class="score score-9">9</span></td>
           <td><span class="score score-6">6</span></td>
@@ -735,7 +786,7 @@
         <tr>
           <td><strong>Chùa / nhà thờ người Việt</strong></td>
           <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
-          <td style="font-size:11.5px">Bà Lan (72, đi chùa hàng tuần — cộng đồng cốt lõi)<br>Bà Thu (71, không digital, community-dependent)<br>Bất kỳ elderly VN nào tin vào cộng đồng tôn giáo</td>
+          <td style="font-size:11px">Bà Lan (72, đi chùa hàng tuần — cộng đồng cốt lõi)<br>Bà Thu (71, không digital, community-dependent)<br>Bất kỳ elderly VN nào tin vào cộng đồng tôn giáo</td>
           <td><span class="score score-5">5</span></td>
           <td><span class="score score-9">9</span></td>
           <td><span class="score score-10">10</span></td>
@@ -749,7 +800,7 @@
         <tr>
           <td><strong>Hội đồng hương / cựu chiến binh</strong></td>
           <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
-          <td style="font-size:11.5px">Ông Minh (67–75, cựu chiến binh, active in hội)<br>Male elderly VN 65+, community-oriented</td>
+          <td style="font-size:11px">Ông Minh (67–75, cựu chiến binh, active in hội)<br>Male elderly VN 65+, community-oriented</td>
           <td><span class="score score-5">5</span></td>
           <td><span class="score score-9">9</span></td>
           <td><span class="score score-9">9</span></td>
@@ -763,7 +814,7 @@
         <tr>
           <td><strong>Radio / TV tiếng Việt</strong></td>
           <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
-          <td style="font-size:11.5px">Bà Lan (SBTN viewer hàng ngày)<br>Bà Thu (radio listener, không có internet)<br>Elderly VN không có digital access</td>
+          <td style="font-size:11px">Bà Lan (SBTN viewer hàng ngày)<br>Bà Thu (radio listener, không có internet)<br>Elderly VN không có digital access</td>
           <td><span class="score score-6">6</span></td>
           <td><span class="score score-8">8</span></td>
           <td><span class="score score-8">8</span></td>
@@ -777,7 +828,7 @@
         <tr style="background:#fffbeb">
           <td><strong>Patient word-of-mouth (passive)</strong></td>
           <td><span class="badge badge-secondary">2nd SECONDARY (cả 2 team)</span></td>
-          <td style="font-size:11.5px">Tất cả persona — người đã hài lòng sau ≥2 tháng CCM<br>Đặc biệt: Ông Minh (male peer network) + Bà Lan (chùa network)</td>
+          <td style="font-size:11px">Tất cả persona — người đã hài lòng sau ≥2 tháng CCM<br>Đặc biệt: Ông Minh (male peer network) + Bà Lan (chùa network)</td>
           <td><span class="score score-3">3</span></td>
           <td><span class="score score-8">8</span></td>
           <td><span class="score score-10">10</span></td>
@@ -805,6 +856,22 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col style="width:18%"><!-- KPI -->
+        <col style="width:5%"><!-- Team -->
+        <col style="width:6%"><!-- Loại -->
+        <col style="width:5.5%"><!-- T1 -->
+        <col style="width:5.5%"><!-- T2 -->
+        <col style="width:5.5%"><!-- T3 -->
+        <col style="width:5.5%"><!-- T4 -->
+        <col style="width:5.5%"><!-- T5 -->
+        <col style="width:5.5%"><!-- T6 -->
+        <col style="width:5%"><!-- Trạng thái -->
+        <col style="width:5%"><!-- Tần suất -->
+        <col style="width:7%"><!-- Công cụ -->
+        <col style="width:7%"><!-- Người -->
+        <col style="width:14%"><!-- Ghi chú -->
+      </colgroup>
       <thead>
         <tr>
           <th>KPI / Hoạt động</th>

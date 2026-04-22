@@ -1,1003 +1,1527 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo cáo nghiên cứu thị trường bảo hiểm</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDI 65+ — Kế Hoạch GTM 2 Team v3.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2d4a;
+    --teal: #0e7a6e;
+    --teal-light: #13a395;
+    --gold: #c8973a;
+    --gold-light: #f0c46a;
+    --cream: #faf8f5;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text-primary: #0f2d4a;
+    --text-secondary: #4a6580;
+    --text-muted: #8fa3b8;
+    --primary-tag: #0e7a6e;
+    --secondary-tag: #6b5ea8;
+    --red: #c0392b;
+    --green-soft: #d4edda;
+    --yellow-soft: #fff3cd;
+    --blue-soft: #d1ecf1;
+    --red-soft: #f8d7da;
+  }
 
-        header {
-            margin-bottom: 30px;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 10px;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        h1 {
-            color: #0056b3;
-            margin-bottom: 5px;
-        }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    min-height: 100vh;
+  }
 
-        .meta-info {
-            font-style: italic;
-            color: #666;
-            font-size: 0.9em;
-        }
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a4a6e 60%, #0e3a5c 100%);
+    padding: 32px 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(14,122,110,0.18);
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(200,151,58,0.12);
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(14,122,110,0.25);
+    border: 1px solid rgba(14,122,110,0.5);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #7edbd3;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .header-badge::before { content: '●'; font-size: 8px; color: #4fd6cd; }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title span { color: var(--gold-light); }
+  .header-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    line-height: 1.6;
+  }
 
-        /* Tab Navigation */
-        .tab-nav {
-            overflow: hidden;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 20px;
-            background-color: #fff;
-            border-radius: 5px 5px 0 0;
-        }
+  /* ── TAB NAV ── */
+  .tab-nav {
+    background: var(--navy);
+    padding: 0 40px;
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 14px 18px 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    letter-spacing: 0.2px;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.85); }
+  .tab-btn.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold-light);
+    background: rgba(255,255,255,0.05);
+  }
 
-        .tab-nav button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 20px;
-            transition: 0.3s;
-            font-size: 16px;
-            font-weight: bold;
-            color: #555;
-        }
+  /* ── CONTENT ── */
+  .content-area {
+    padding: 32px 40px 60px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
-        .tab-nav button:hover {
-            background-color: #ddd;
-        }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    padding-left: 12px;
+    border-left: 3px solid var(--teal);
+  }
+  .section-note {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: #f0f4f8;
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.7;
+  }
 
-        .tab-nav button.active {
-            background-color: #0056b3;
-            color: white;
-        }
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: 0 2px 20px rgba(15,45,74,0.08); }
+  table { border-collapse: collapse; width: 100%; background: #fff; font-size: 12.5px; }
+  thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 11px 13px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11.5px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child { border-radius: 0 12px 0 0; border-right: none; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #f7fbff; }
+  tbody td {
+    padding: 10px 13px;
+    vertical-align: top;
+    line-height: 1.55;
+    border-right: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  tbody td:last-child { border-right: none; }
 
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            animation: fadeEffect 0.5s;
-        }
+  /* ── TAGS & BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .badge-primary { background: #d4f1ee; color: #0a6b60; }
+  .badge-secondary { background: #e9e5f8; color: #5545a0; }
+  .badge-md { background: #dbeafe; color: #1e40af; }
+  .badge-bd { background: #fce7f3; color: #9d174d; }
+  .badge-both { background: #fff3cd; color: #92400e; }
 
-        @keyframes fadeEffect {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+  /* score circle */
+  .score { display: inline-block; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 11.5px; font-weight: 700; }
+  .score-9, .score-10 { background: #d4edda; color: #155724; }
+  .score-7, .score-8 { background: #fff3cd; color: #856404; }
+  .score-4, .score-5, .score-6 { background: #f8d7da; color: #721c24; }
+  .score-1, .score-2, .score-3 { background: #f5c6cb; color: #491217; }
 
-        /* Table Styling */
-        .table-container {
-            overflow-x: auto;
-            margin-bottom: 40px;
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+  /* persona cards */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .persona-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(15,45,74,0.08);
+    overflow: hidden;
+    border-top: 4px solid var(--teal);
+  }
+  .persona-card:nth-child(2) { border-top-color: #2563eb; }
+  .persona-card:nth-child(3) { border-top-color: #d97706; }
+  .persona-card:nth-child(4) { border-top-color: #7c3aed; }
+  .persona-card:nth-child(5) { border-top-color: var(--red); }
+  .persona-header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .persona-name { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .persona-role { font-size: 11px; color: var(--text-secondary); font-weight: 500; margin-top: 2px; }
+  .persona-body { padding: 14px 18px; }
+  .persona-row { margin-bottom: 11px; }
+  .persona-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .persona-val { font-size: 12px; color: var(--text-primary); line-height: 1.55; white-space: pre-line; }
 
-        h2 {
-            color: #2c3e50;
-            border-left: 5px solid #0056b3;
-            padding-left: 10px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
+  /* journey steps */
+  .journey-steps { display: flex; flex-direction: column; gap: 0; }
+  .journey-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0;
+    position: relative;
+  }
+  .journey-step:not(:last-child) .step-connector { border-left: 2px dashed var(--border); }
+  .step-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 0 0 4px var(--cream);
+  }
+  .step-connector { flex: 1; width: 2px; background: var(--border); margin-top: 6px; }
+  .step-card {
+    background: #fff;
+    border-radius: 12px;
+    margin: 12px 0 12px 16px;
+    box-shadow: 0 2px 12px rgba(15,45,74,0.07);
+    overflow: hidden;
+  }
+  .step-card-header {
+    background: var(--navy);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-phase { font-size: 13px; font-weight: 700; color: #fff; }
+  .step-card-body { padding: 16px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .step-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .step-section-val { font-size: 12px; line-height: 1.6; color: var(--text-primary); white-space: pre-line; }
+  .step-kpi { background: #f0f9f8; border-left: 3px solid var(--teal); padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 12px; color: #0a4a42; line-height: 1.6; white-space: pre-line; }
+  .step-risk { background: #fff5f5; border-left: 3px solid #e53e3e; padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 12px; color: #742a2a; line-height: 1.6; white-space: pre-line; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            min-width: 800px; /* Ensure table doesn't scrunch too much */
-        }
+  /* KPI table color rows */
+  .kpi-growth { background: #f0fdf9; }
+  .kpi-acquisition { background: #fffbeb; }
+  .kpi-channel { background: #f5f3ff; }
+  .kpi-quality { background: #fef2f2; }
+  .kpi-revenue { background: #eff6ff; }
+  .kpi-milestone { background: #fdf4ff; }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            vertical-align: top;
-        }
+  /* channel matrix */
+  .matrix-note {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .matrix-note-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11.5px; color: var(--text-secondary);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-            font-weight: bold;
-        }
+  .risk-text { font-size: 11.5px; line-height: 1.6; white-space: pre-line; }
 
-        tr:nth-child(even) {
-            background-color: #fbfbfb;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Utility for line breaks in cells */
-        td {
-            white-space: pre-wrap; 
-        }
-
-        .note {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        /* Conclusion/Selling Points Section */
-        .conclusion-box {
-            margin-top: 40px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #e6f7ff; /* Light blue background */
-            border: 1px solid #91d5ff;
-        }
-
-        .conclusion-box h3 {
-            color: #0056b3;
-            border-left: 5px solid #0056b3;
-            padding-left: 10px;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .conclusion-box ul {
-            list-style-type: none; /* Remove default bullet */
-            padding-left: 0;
-            margin: 0;
-        }
-
-        .conclusion-box li {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            position: relative;
-            font-size: 1.05rem;
-        }
-
-        .conclusion-box li::before {
-            content: "▶"; /* Custom bullet point */
-            color: #0056b3;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-    </style>
+  @media (max-width: 768px) {
+    .content-area { padding: 20px 16px 40px; }
+    .site-header { padding: 24px 16px 20px; }
+    .tab-nav { padding: 0 12px; }
+    .step-card-body { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <h1>Báo cáo nghiên cứu thị trường bảo hiểm</h1>
-    <div class="meta-info">Version 01</div>
-    <div class="meta-info">Updated on 16Dec2025</div>
+<header class="site-header">
+  <div class="header-badge">GTM Template · Phiên bản 3.0 · Tháng 4/2026</div>
+  <h1 class="header-title">MEDI 65+ — <span>Kế Hoạch GTM 2 Team</span><br>CCM · MTM · E&M</h1>
+  <p class="header-sub">Team MD: Kênh lâm sàng (bác sĩ, dược sĩ, bệnh viện) &nbsp;|&nbsp; Team BD: Kênh tăng trưởng (cộng đồng, caregiver, partnership ngoài lâm sàng)</p>
 </header>
 
-<div class="tab-nav">
-    <button class="tab-links active" onclick="openTab(event, 'Tab1')">Tab 1: Bức tranh tổng thể</button>
-    <button class="tab-links" onclick="openTab(event, 'Tab2')">Tab 2: Rào cản bảo hiểm</button>
-    <button class="tab-links" onclick="openTab(event, 'Tab3')">Tab 3: Khả năng chi trả CVH</button>
-</div>
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab(0)">① Tổng Quan 2 Team</button>
+  <button class="tab-btn" onclick="switchTab(1)">② Team MD</button>
+  <button class="tab-btn" onclick="switchTab(2)">③ Team BD</button>
+  <button class="tab-btn" onclick="switchTab(3)">④ KPIs & Timeline</button>
+  <button class="tab-btn" onclick="switchTab(4)">⑤ Chân Dung Khách Hàng</button>
+  <button class="tab-btn" onclick="switchTab(5)">⑥ Customer Journey</button>
+</nav>
 
-<div id="Tab1" class="tab-content" style="display: block;">
-    
-    <div class="table-container">
-        <h2>1. Bức tranh tổng thể về bảo hiểm tại Mỹ</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Phân khúc bảo hiểm</th>
-                    <th>Chi tiết</th>
-                    <th>Tỷ lệ người Việt (%)</th>
-                    <th>Trung bình Mỹ</th>
-                    <th>Trung bình châu Á</th>
-                    <th>Đặc điểm & Cơ hội cho CVH</th>
-                    <th>Đối tượng</th>
-                    <th>Điều kiện chính</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Bảo hiểm Y tế Công (Government Programs)</td>
-                    <td>Medicare (65+)</td>
-                    <td>24.3%</td>
-                    <td>18.7%</td>
-                    <td>16.8%</td>
-                    <td>CƠ HỘI VÀNG. Chi trả tốt cho Telehealth, Chronic Care Management (CCM), Annual Wellness Visit. Đối tượng cần CVH nhất.</td>
-                    <td>Chủ yếu: từ 65 tuổi trở lên<br>Hoặc: dưới 65 tuổi nhưng có khuyết tật; hoặc bệnh lý đặc biệt như ESRD/ALS(Bệnh xơ cột bên teo cơ)</td>
-                    <td>Điều kiện tiên quyết (Sống còn):<br>Theo CMS: ≥65 tuổi, là cư dân Mỹ, và là công dân Mỹ hoặc thường trú nhân (green card) đã cư trú liên tục 5 năm trước tháng nộp đơn.<br>Điều kiện Tài chính (Để hưởng miễn phí Part A nằm viện):<br>- Đã đi làm và đóng thuế Medicare ít nhất 10 năm (40 tín chỉ/quarters).<br><br>Nếu không đủ 10 năm (ví dụ người già mới sang): Vẫn được mua, nhưng phải tự bỏ tiền túi trả phí Part A (rất đắt, khoảng $500+/tháng) + phí Part B đi khám ($174.70/tháng - số liệu 2024).</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Medicaid</td>
-                    <td>18.7%</td>
-                    <td>22.3%</td>
-                    <td>14.2%</td>
-                    <td>THÁCH THỨC. Chi trả thấp, thủ tục rườm rà theo từng bang (Medi-Cal). Nên cân nhắc ở giai đoạn 2.</td>
-                    <td>Người/nhà có thu nhập thấp (thường gồm: trẻ em, thai phụ, người già, người khuyết tật, và nhiều nhóm thu nhập thấp khác).</td>
-                    <td>Do từng bang quản lý nên tiêu chí cụ thể khác nhau, nhưng nhìn chung dựa trên thu nhập + số người trong hộ + tình trạng (mang thai/khuyết tật/tuổi…).</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>CHIP (Children's Health Insurance Program)</td>
-                    <td></td>
-                    <td>7,2 triệu trẻ em</td>
-                    <td>6%</td>
-                    <td>KHÔNG ƯU TIÊN<br>❌ Target Market Mismatch:<br>CHIP = trẻ em <19 tuổi<br>CVH hiện tại focus vào người lớn + người cao tuổi<br>Vietnamese American CHIP enrollment: ước tính ~15,000-20,000 trẻ (rất nhỏ)</td>
-                    <td>-Trẻ em/thiếu niên (thường từ sơ sinh đến dưới 19 tuổi) trong gia đình thu nhập trung bình–thấp, chưa có bảo hiểm.<br>-(Tùy bang): phụ nữ mang thai thu nhập phù hợp, chưa có bảo hiểm</td>
-                    <td>Điều kiện cụ thể khác nhau theo tiểu bang, nhưng khung chung thường gồm:<br>Dưới 19 tuổi (đối với nhóm trẻ em)<br>Chưa có bảo hiểm (không thuộc Medicaid và không có bảo hiểm nhóm/đủ tiêu chuẩn khác)<br>Cư trú tại tiểu bang nơi nộp<br>Quốc tịch/di trú: là công dân Mỹ hoặc đáp ứng yêu cầu di trú; một số bang có lựa chọn cho trẻ em/ thai phụ “lawfully present” (hợp pháp) kể cả trong giai đoạn 5 năm đầu.</td>
-                </tr>
-                <tr>
-                    <td>Bảo hiểm Y tế Tư nhân (Private Health Insurance)</td>
-                    <td>Employer-based<br>Qua người sử dụng lao động</td>
-                    <td>48.6%</td>
-                    <td>54.3%</td>
-                    <td>62.1%</td>
-                    <td>Nhóm đi làm/trẻ.<br>Thường có deductible cao. Cơ hội cho các dịch vụ Acute Care (khám nhanh) hoặc Membership công ty.</td>
-                    <td>-Nhân viên đủ điều kiện theo chính sách công ty (benefits-eligible). Với các quy định ACA cho “full-time” (mục đích employer mandate), full-time thường được tính ≥30 giờ/tuần hoặc ≥130 giờ/tháng.<br>-Người phụ thuộc: nếu plan có quyền lợi phụ thuộc, ACA yêu cầu cho phép con phụ thuộc được ở lại đến 26 tuổi</td>
-                    <td>Công ty phải “offer” plan và bạn phải đăng ký đúng thời hạn theo quy định của HR (thường là khi mới vào làm hoặc kỳ open enrollment nội bộ của công ty).<br>Waiting period: nếu plan có thời gian chờ, luật giới hạn không được vượt quá 90 ngày sau khi bạn đã “đủ điều kiện” theo tiêu chí của plan; quy định này không bắt buộc công ty phải offer cho mọi nhóm nhân viên—công ty vẫn được đặt tiêu chí eligibility (full-time/part-time, nhóm chức danh…)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Marketplace (ACA / “Obamacare”)</td>
-                    <td></td>
-                    <td>21,3 triệu</td>
-                    <td>11%</td>
-                    <td></td>
-                    <td>Người chưa đủ 65 tuổi muốn mua bảo hiểm cá nhân/gia đình (tự doanh, thất nghiệp, làm nơi không có bảo hiểm, hoặc vừa mất bảo hiểm từ công ty).</td>
-                    <td>Sống tại Mỹ<br>Công dân/quốc tịch Mỹ hoặc người “lawfully present” (có tình trạng cư trú hợp pháp)<br>Không đang bị giam giữ<br>Nếu đã có Medicare thì không được mua Marketplace plan</td>
-                </tr>
-                <tr>
-                    <td>Không bảo hiểm</td>
-                    <td></td>
-                    <td>8.2%</td>
-                    <td>7.9%</td>
-                    <td>6.6%</td>
-                    <td>Đối tượng bắt buộc phải dùng dịch vụ trả tiền mặt (Cash-pay).<br>Phù hợp gói subscription giá rẻ.</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+<main class="content-area">
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 1: Tổng Quan 2 Team
+════════════════════════════════════════════════════ -->
+<section class="tab-panel active" id="panel-0">
+  <h2 class="section-title">MEDI 65+ — Kế Hoạch GTM 2 Team: CCM / MTM / E&M</h2>
+  <p class="section-subtitle">Team MD: Kênh lâm sàng (bác sĩ, dược sĩ, bệnh viện) &nbsp;|&nbsp; Team BD: Kênh tăng trưởng (cộng đồng, caregiver, partnership ngoài lâm sàng)</p>
+
+  <div class="matrix-note">
+    <div class="matrix-note-item"><div class="dot" style="background:#0e7a6e"></div>Team MD — Kênh lâm sàng</div>
+    <div class="matrix-note-item"><div class="dot" style="background:#9d174d"></div>Team BD — Kênh tăng trưởng</div>
+    <div class="matrix-note-item"><div class="dot" style="background:#92400e"></div>MD + BD</div>
+    <div class="matrix-note-item"><span style="font-weight:700;color:#0a6b60">⭐ PRIMARY</span> = Activate ngay Year 1 Q1</div>
+    <div class="matrix-note-item"><span style="font-weight:600;color:#5545a0">SECONDARY</span> = Build Q2–Q4, scale Year 2</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Kênh</th>
+          <th>Loại</th>
+          <th>Team</th>
+          <th>Ưu tiên</th>
+          <th>Tốc độ</th>
+          <th>Khả thi</th>
+          <th>Trust VN</th>
+          <th>CAC hiệu quả</th>
+          <th>Scalability</th>
+          <th>CAC dự kiến</th>
+          <th>Conversion dự kiến</th>
+          <th>Revenue/BN/năm</th>
+          <th>Dịch vụ</th>
+          <th>Ghi chú chiến lược</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hospital discharge (TCM)</strong></td>
+          <td>Referral</td>
+          <td><span class="badge badge-md">Team MD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$40–80</td>
+          <td>TCM→CCM: 65–70%</td>
+          <td>~$2,900/năm</td>
+          <td>CCM · MTM · E&M</td>
+          <td>Kênh nhanh nhất — activate Day 1 bằng existing hospital relationships</td>
+        </tr>
+        <tr>
+          <td><strong>Vietnamese PCP / specialist referral</strong></td>
+          <td>Referral</td>
+          <td><span class="badge badge-md">Team MD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$60–120</td>
+          <td>PCP referral→CCM: 60–70%</td>
+          <td>CCM $2,700/năm</td>
+          <td>CCM · MTM · E&M</td>
+          <td>MD-to-MD trust; supply VN PCPs ~500–800 toàn quốc</td>
+        </tr>
+        <tr>
+          <td><strong>Vietnamese pharmacies</strong></td>
+          <td>Partnership</td>
+          <td><span class="badge badge-md">Team MD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td>$30–55/MTM<br>$90–130/CCM</td>
+          <td>Pharmacy→MTM: 55–65%<br>MTM→CCM: 55–60%</td>
+          <td>MTM $120 + CCM $2,700</td>
+          <td>MTM · CCM</td>
+          <td>PharmD credibility; MTM candidates pre-qualified (≥5 Rx)</td>
+        </tr>
+        <tr>
+          <td><strong>Hospital community benefit</strong></td>
+          <td>Partnership</td>
+          <td><span class="badge badge-md">Team MD</span></td>
+          <td><span class="badge badge-secondary">SECONDARY</span></td>
+          <td><span class="score score-3">3</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td>$20–40</td>
+          <td>Referral→enroll: 60–70%</td>
+          <td>Contract + CMS billing</td>
+          <td>CCM · MTM · E&M</td>
+          <td>Activate sau tháng 4; 3–6 tháng contract process</td>
+        </tr>
+        <tr>
+          <td><strong>Social workers / case managers</strong></td>
+          <td>Referral</td>
+          <td><span class="badge badge-md">Team MD</span></td>
+          <td><span class="badge badge-secondary">SECONDARY</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$80–150</td>
+          <td>SW referral→enroll: 45–55%</td>
+          <td>AWV + CCM pipeline</td>
+          <td>CCM · E&M</td>
+          <td>Second-tier hospital pipeline; leverage existing MD relationships</td>
+        </tr>
+        <tr style="background:#fdf4ff">
+          <td><strong>Vietnamese senior centers</strong></td>
+          <td>Community</td>
+          <td><span class="badge badge-bd">Team BD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td>$45–70/E&M<br>$100–140/CCM</td>
+          <td>Event→E&M: 20–30%<br>E&M→CCM: 60–65%</td>
+          <td>CCM $2,700/năm</td>
+          <td>CCM · MTM · E&M</td>
+          <td>Messaging thay đổi: không còn AWV free; dùng E&M framing</td>
+        </tr>
+        <tr style="background:#fdf4ff">
+          <td><strong>Facebook groups organic</strong></td>
+          <td>Direct</td>
+          <td><span class="badge badge-bd">Team BD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td>$15–35</td>
+          <td>Reach→inquiry: 3–5%<br>Inquiry→E&M: 40–50%</td>
+          <td>CCM pipeline</td>
+          <td>CCM · E&M</td>
+          <td>$0 cost; Day 1 activation; reach cả BN lẫn con cái caregiver</td>
+        </tr>
+        <tr style="background:#fdf4ff">
+          <td><strong>Chùa / nhà thờ người Việt</strong></td>
+          <td>Community</td>
+          <td><span class="badge badge-bd">Team BD</span></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$50–80/E&M<br>$110–160/CCM</td>
+          <td>Health talk→E&M: 12–20%<br>E&M→CCM: 60–65%</td>
+          <td>CCM $2,700/năm</td>
+          <td>CCM · MTM</td>
+          <td>Highest trust với Bà Lan / Bà Thu; không có kênh nào thay thế</td>
+        </tr>
+        <tr style="background:#fdf4ff">
+          <td><strong>Hội đồng hương / cựu chiến binh</strong></td>
+          <td>Community</td>
+          <td><span class="badge badge-bd">Team BD</span></td>
+          <td><span class="badge badge-secondary">SECONDARY</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-4">4</span></td>
+          <td>$35–60</td>
+          <td>Event→E&M: 18–25%</td>
+          <td>CCM pipeline</td>
+          <td>CCM</td>
+          <td>Ông Minh persona; peer trust; geographic limitation</td>
+        </tr>
+        <tr style="background:#fdf4ff">
+          <td><strong>Radio / TV tiếng Việt</strong></td>
+          <td>Direct</td>
+          <td><span class="badge badge-bd">Team BD</span></td>
+          <td><span class="badge badge-secondary">SECONDARY</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-4">4</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$150–280</td>
+          <td>Media→inquiry: 5–10%</td>
+          <td>Awareness only</td>
+          <td>CCM · E&M</td>
+          <td>CAC cao nhất; brand building; chỉ activate sau >50 BN active</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td><strong>Patient word-of-mouth (passive)</strong></td>
+          <td>Referral</td>
+          <td><span class="badge badge-both">MD + BD</span></td>
+          <td><span class="badge badge-secondary">SECONDARY</span></td>
+          <td><span class="score score-3">3</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$0–15</td>
+          <td>Referred→enroll: 70–80%</td>
+          <td>Full LTV $3,016/năm</td>
+          <td>CCM · MTM · E&M</td>
+          <td>Activate thụ động tháng 4–6; systematic ask tại tháng 3 CCM call</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-note">
+    ⭐ <strong>PRIMARY</strong> = Activate ngay Year 1 Q1 &nbsp;|&nbsp; <strong>2nd</strong> = Build Year 1 Q2–Q4, scale Year 2 &nbsp;|&nbsp; Điểm 1–10: Tốc độ / Khả thi / Trust / CAC efficiency / Scalability (cao = tốt hơn)
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 2: Team MD
+════════════════════════════════════════════════════ -->
+<section class="tab-panel" id="panel-1">
+  <h2 class="section-title">TEAM MD — Kênh Lâm Sàng</h2>
+  <p class="section-subtitle">Hospital Discharge · PCP Referral · Pharmacies · Hospital Community Benefit · Social Workers<br>
+  Phụ trách: Bác sĩ (MD) + Dược sĩ (PharmD) | Nguyên tắc: Chỉ tiếp cận khi conversation phải bắt đầu bằng chuyên môn lâm sàng</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Kênh</th>
+          <th>Ưu tiên</th>
+          <th>ICP phù hợp</th>
+          <th>Tốc độ<br>có BN đầu tiên</th>
+          <th>Khả thi<br>2-team</th>
+          <th>Trust<br>người Việt</th>
+          <th>CAC<br>hiệu quả</th>
+          <th>Scale<br>6 tháng</th>
+          <th>CAC dự kiến</th>
+          <th>Conversion dự kiến</th>
+          <th>Revenue / BN / năm</th>
+          <th>Risk cần lưu ý</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hospital discharge (TCM)</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Bà Thu (dual eligible, vừa xuất viện)<br>Bà Lan (hospital-triggered, family-managed)</td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$40–80</td>
+          <td>TCM → CCM: 65–70%</td>
+          <td>TCM $165–235/episode<br>+ CCM $2,700/năm<br>+ E&M $80–300/năm</td>
+          <td class="risk-text">• Case manager relationship phụ thuộc cá nhân MD → MD rời bệnh viện = mất kênh<br>• SNF exclusion: BN trong SNF KHÔNG bill CCM<br>• CMS bắt buộc liên hệ trong 2 ngày làm việc sau xuất viện<br>• Theo dõi closely để không miss contact window</td>
+        </tr>
+        <tr>
+          <td><strong>Vietnamese PCP / specialist referral</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Ông Minh (67–72, multiple chronic, đang có PCP người Việt)<br>Bà Lan (via con cái initiate với PCP quen)</td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$60–120</td>
+          <td>PCP referral → CCM: 60–70%<br>PCP referral → E&M: 55–65%</td>
+          <td>CCM $2,700/năm<br>+ E&M variable<br>+ MTM $120/năm</td>
+          <td class="risk-text">• Stark Law / Anti-Kickback: KHÔNG revenue sharing với PCP → cần attorney review<br>• Supply VN PCPs có hạn (~500–800 toàn quốc)<br>• MD bandwidth bị chia với kênh hospital discharge<br>• Một số PCP có thể thấy là competitor, không phải partner</td>
+        </tr>
+        <tr>
+          <td><strong>Vietnamese pharmacies</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Bà Thu (≥9 thuốc, dual eligible)<br>Bà Lan (lấy thuốc đều tại nhà thuốc VN)<br>Tất cả BN có ≥5 Rx Part D</td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td>$30–55/MTM<br>$90–130/CCM (qua MTM bridge)</td>
+          <td>Pharmacy → MTM: 55–65%<br>MTM → CCM: 55–60%</td>
+          <td>MTM $120/năm → bắt buộc convert sang CCM<br>CCM $2,700/năm<br>= LTV $2,820+/năm khi stack</td>
+          <td class="risk-text">• MTM revenue đơn lẻ ($120) KHÔNG justify CAC → PHẢI convert sang CCM trong 90 ngày<br>• Part D eligibility check required per patient trước khi bill MTM<br>• Một số pharmacies có thể từ chối nếu thấy conflict of interest với PBM của họ<br>• Cần PharmD training thống nhất messaging tiếng Việt</td>
+        </tr>
+        <tr>
+          <td><strong>Hospital community benefit contracts</strong></td>
+          <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
+          <td style="font-size:11.5px">High-risk VN patients đã trong hospital system<br>Dual eligible có medical complexity cao</td>
+          <td><span class="score score-3">3</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td>$20–40 (contract-funded)</td>
+          <td>Hospital referral → enroll: 60–70%</td>
+          <td>Contract $5K–20K/tháng<br>+ CMS billing on top</td>
+          <td class="risk-text">• Contract negotiation + legal review: 3–6 tháng → KHÔNG activate trước tháng 4<br>• Reporting requirements nặng (CHNA compliance, outcomes documentation)<br>• Phụ thuộc CHNA của hospital có include Vietnamese population<br>• KHÔNG ưu tiên trước khi hospital discharge pipeline ≥20 patients ổn định</td>
+        </tr>
+        <tr>
+          <td><strong>Social workers / case managers</strong></td>
+          <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
+          <td style="font-size:11.5px">Elderly VN sống một mình, complex social circumstances<br>Bà Thu type (không có caregiver, dual eligible)</td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-7">7</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td>$80–150</td>
+          <td>SW referral → enroll: 45–55%</td>
+          <td>E&M qualifying visit<br>+ CCM pipeline $2,700/năm</td>
+          <td class="risk-text">• Social workers thường overloaded → referral inconsistent, cần follow-up system chặt<br>• Needs fast care coordinator response: ≤2 giờ sau khi nhận referral<br>• Conversion thấp hơn direct TCM → treat as supplement, KHÔNG phải replacement<br>• Không nên dùng MD time trực tiếp — care coordinator handle follow-up</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-note">
+    💡 <strong>LÝ DO CHỌN:</strong> Cả 3 Primary channels đều có Trust ≥ 9 VÀ Conversion ≥ 8 — đây là tiêu chí không thể thỏa hiệp với thị trường LEP Vietnamese. CAC secondary channels ($80–150) chỉ chấp nhận được sau khi primary channels đã generate cash flow.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 3: Team BD
+════════════════════════════════════════════════════ -->
+<section class="tab-panel" id="panel-2">
+  <h2 class="section-title">TEAM BD — Kênh Tăng Trưởng</h2>
+  <p class="section-subtitle">Senior Centers · Facebook · Chùa/Nhà Thờ · Hội Đồng Hương · Radio/TV · Word-of-Mouth<br>
+  Phụ trách: Care Coordinator song ngữ + BD Executive | Nguyên tắc: Tất cả kênh không cần bằng cấp y tế — convert awareness thành E&M booking</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Kênh</th>
+          <th>Ưu tiên</th>
+          <th>ICP phù hợp</th>
+          <th>Tốc độ<br>có BN đầu tiên</th>
+          <th>Khả thi<br>2-team</th>
+          <th>Trust<br>người Việt</th>
+          <th>CAC<br>hiệu quả</th>
+          <th>Scale<br>6 tháng</th>
+          <th>CAC dự kiến</th>
+          <th>Conversion dự kiến</th>
+          <th>Revenue / BN / năm</th>
+          <th>Risk cần lưu ý</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Vietnamese senior centers</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Bà Lan (72, đi senior center hàng tuần)<br>Bà Thu (71, social isolation, community-dependent)<br>Tất cả elderly VN thiếu digital access</td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td>$45–70/E&M booking<br>$100–140/CCM enrolled</td>
+          <td>Event → E&M inquiry: 20–30%<br>E&M → CCM: 60–65%</td>
+          <td>E&M (qualifying)<br>+ CCM $2,700/năm<br>+ MTM $120/năm</td>
+          <td class="risk-text">• Messaging phải thay đổi HOÀN TOÀN so với AWV cũ: không còn '$0 copay free' → dùng 'Gặp bác sĩ tiếng Việt khi bạn cần, không cần lái xe'<br>• Senior center có thể có existing health partner → offer clear value differentiation<br>• Enrollment pace phụ thuộc care coordinator capacity — không scale quá nhanh<br>• Cần bilingual printed materials để leave behind</td>
+        </tr>
+        <tr>
+          <td><strong>Facebook groups organic</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Chị Hoa (41, kỹ sư, caregiver cho ba mẹ)<br>Ông Minh (67, Facebook daily user)<br>Anh Tuấn (36, remote caregiver at Seattle)</td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td>$15–35</td>
+          <td>Reach → inquiry: 3–5%<br>Inquiry → E&M booking: 40–50%</td>
+          <td>AWV awareness + CCM<br>+ E&M pipeline</td>
+          <td class="risk-text">• Over-posting = spam ban → max 3–4 posts/tuần per group, luân phiên groups<br>• Brand post bị ignore → PHẢI dùng member/ambassador voice (không phải MEDI 65+ account)<br>• Privacy concern khi discuss health publicly → dùng DM cho follow-up, không comment public<br>• Cần track UTM/source riêng để đo ROI từng group</td>
+        </tr>
+        <tr>
+          <td><strong>Chùa / nhà thờ người Việt</strong></td>
+          <td><span class="badge badge-primary">⭐ PRIMARY</span></td>
+          <td style="font-size:11.5px">Bà Lan (72, đi chùa hàng tuần — cộng đồng cốt lõi)<br>Bà Thu (71, không digital, community-dependent)<br>Bất kỳ elderly VN nào tin vào cộng đồng tôn giáo</td>
+          <td><span class="score score-5">5</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$50–80/E&M<br>$110–160/CCM</td>
+          <td>Health talk → E&M inquiry: 12–20%<br>E&M → CCM: 60–65%</td>
+          <td>E&M + CCM $2,700/năm<br>(path to highest-trust patients)</td>
+          <td class="risk-text">• Lãnh đạo tôn giáo PHẢI tin và endorse dịch vụ trước → relationship build 4–8 tuần, không thể skip<br>• Seasonal attendance variation: Tết/holidays tăng nhưng hè giảm<br>• Cần bilingual printed materials (không còn AWV flyer cũ)<br>• Conversion chậm nhưng chất lượng cao — kiên nhẫn, đừng push hard sell</td>
+        </tr>
+        <tr>
+          <td><strong>Hội đồng hương / cựu chiến binh</strong></td>
+          <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
+          <td style="font-size:11.5px">Ông Minh (67–75, cựu chiến binh, active in hội)<br>Male elderly VN 65+, community-oriented</td>
+          <td><span class="score score-5">5</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-9">9</span></td>
+          <td><span class="score score-4">4</span></td>
+          <td>$35–60</td>
+          <td>Event → E&M booking: 18–25%</td>
+          <td>CCM $2,700/năm + E&M pipeline</td>
+          <td class="risk-text">• Mỗi chapter là independent relationship → cần separate outreach cho từng hội<br>• Geographic limitation: hội chỉ phục vụ local area<br>• Meeting schedule không đều — không thể dự báo pipeline<br>• Conversion chậm hơn senior centers; treat as supplementary channel</td>
+        </tr>
+        <tr>
+          <td><strong>Radio / TV tiếng Việt</strong></td>
+          <td><span class="badge badge-secondary">2nd SECONDARY</span></td>
+          <td style="font-size:11.5px">Bà Lan (SBTN viewer hàng ngày)<br>Bà Thu (radio listener, không có internet)<br>Elderly VN không có digital access</td>
+          <td><span class="score score-6">6</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-4">4</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$150–280 (CAC cao nhất)</td>
+          <td>Media → inquiry: 5–10%<br>Inquiry → E&M booking: 25–35%</td>
+          <td>Brand awareness → E&M<br>+ CCM pipeline</td>
+          <td class="risk-text">• CAC cao nhất trong toàn bộ channel matrix ($150–280) → chỉ justify khi cần brand scale<br>• Conversion khó track — cần dedicated số điện thoại cho radio/TV calls<br>• CHƯA activate trước khi hospital discharge + senior center generate ≥50 BN active<br>• Radio ROI tốt hơn TV cho segment này (SBTN = visual brand; LSR = direct response)</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td><strong>Patient word-of-mouth (passive)</strong></td>
+          <td><span class="badge badge-secondary">2nd SECONDARY (cả 2 team)</span></td>
+          <td style="font-size:11.5px">Tất cả persona — người đã hài lòng sau ≥2 tháng CCM<br>Đặc biệt: Ông Minh (male peer network) + Bà Lan (chùa network)</td>
+          <td><span class="score score-3">3</span></td>
+          <td><span class="score score-8">8</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-10">10</span></td>
+          <td><span class="score score-5">5</span></td>
+          <td>$0–15 (thấp nhất)</td>
+          <td>Referred → E&M/enroll: 70–80%</td>
+          <td>Full LTV $3,016/BN/năm<br>(CCM + MTM + E&M)</td>
+          <td class="risk-text">• Hoàn toàn phụ thuộc patient satisfaction → KHÔNG activate trước khi có ≥30 happy patients (tháng 4–6)<br>• Không xảy ra tự nhiên — care coordinator PHẢI systematic ask tại tháng 3 CCM call<br>• Không control được pace của channel này<br>• Track referral source: hỏi khi bệnh nhân enroll 'Ai giới thiệu bạn đến MEDI 65+?'</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-note">
+    ⚠️ <strong>LƯU Ý QUAN TRỌNG:</strong> AWV đã bị thay bằng E&M — messaging tại tất cả community channels PHẢI thay đổi. Không còn hook '$0 copay không cần bệnh'. Dùng: <em>"Gặp bác sĩ người Việt qua video khi bạn cần, Medicare chi trả phần lớn, không cần lái xe 45 phút."</em>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 4: KPIs & Timeline
+════════════════════════════════════════════════════ -->
+<section class="tab-panel" id="panel-3">
+  <h2 class="section-title">KPIs & Kế Hoạch Triển Khai 6 Tháng — MEDI 65+ GTM v3.0</h2>
+  <p class="section-subtitle">CCM / MTM / E&M | Màu: Xanh lá = đạt target | Vàng = cần theo dõi | Đỏ = cần action ngay | Xanh dương = đang build</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>KPI / Hoạt động</th>
+          <th>Team</th>
+          <th>Loại</th>
+          <th>Tháng 1</th>
+          <th>Tháng 2</th>
+          <th>Tháng 3</th>
+          <th>Tháng 4</th>
+          <th>Tháng 5</th>
+          <th>Tháng 6</th>
+          <th>Trạng thái theo dõi</th>
+          <th>Tần suất review</th>
+          <th>Công cụ đo</th>
+          <th>Người chịu trách nhiệm</th>
+          <th>Ghi chú quan trọng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Growth -->
+        <tr class="kpi-growth">
+          <td><strong>TỔNG BN CCM ACTIVE</strong></td>
+          <td><span class="badge badge-both">Cả 2</span></td>
+          <td><span style="color:#155724;font-weight:600;font-size:11px">Growth</span></td>
+          <td><strong>10</strong></td><td><strong>25</strong></td><td><strong>45</strong></td><td><strong>80</strong></td><td><strong>140</strong></td><td><strong>200</strong></td>
+          <td>Weekly</td><td>Weekly</td><td>EHR + Billing</td><td>Bác sĩ MD</td>
+          <td>Break-even tại 50–65 BN; mục tiêu tháng 6 là 200</td>
+        </tr>
+        <tr class="kpi-growth">
+          <td><strong>BN E&M KHÁM/THÁNG</strong></td>
+          <td><span class="badge badge-both">Cả 2</span></td>
+          <td><span style="color:#155724;font-weight:600;font-size:11px">Growth</span></td>
+          <td>5</td><td>12</td><td>20</td><td>32</td><td>50</td><td>65</td>
+          <td>Monthly</td><td>Monthly</td><td>EHR claims</td><td>Care Coordinator</td>
+          <td>E&M qualifying visit + follow-up khi cần lâm sàng; track separately từ CCM</td>
+        </tr>
+        <tr class="kpi-growth">
+          <td><strong>BN MTM (CMR) HOÀN THÀNH</strong></td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#155724;font-weight:600;font-size:11px">Growth</span></td>
+          <td>3</td><td>8</td><td>15</td><td>25</td><td>38</td><td>55</td>
+          <td>Monthly</td><td>Monthly</td><td>Outcomes MTM</td><td>PharmD</td>
+          <td>MTM cross-sell từ tháng 2–3 CCM; target 60% CCM patients</td>
+        </tr>
+        <!-- Acquisition -->
+        <tr class="kpi-acquisition">
+          <td><strong>MỚI ENROLL / THÁNG</strong></td>
+          <td><span class="badge badge-both">Cả 2</span></td>
+          <td><span style="color:#856404;font-weight:600;font-size:11px">Acquisition</span></td>
+          <td>10</td><td>15</td><td>20</td><td>25</td><td>30</td><td>35</td>
+          <td>Weekly</td><td>Weekly</td><td>CRM pipeline</td><td>BD Lead</td>
+          <td>Tốc độ enroll phải consistent — không tăng đột biến gây strain ops</td>
+        </tr>
+        <!-- Channel KPIs - MD -->
+        <tr class="kpi-channel">
+          <td>Hospital discharge referrals / tháng</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>5</td><td>8</td><td>12</td><td>18</td><td>22</td><td>28</td>
+          <td>Weekly</td><td>Weekly</td><td>Case mgr log</td><td>MD Primary</td>
+          <td>TCM contact trong 2 ngày = bắt buộc; miss = lost opportunity</td>
+        </tr>
+        <tr class="kpi-channel">
+          <td>PCP referral / tháng</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>0</td><td>3</td><td>8</td><td>12</td><td>16</td><td>20</td>
+          <td>Monthly</td><td>Monthly</td><td>Referral tracking</td><td>MD Secondary</td>
+          <td>0 tháng 1 = build relationship trước; target 10–15 PCPs active tháng 6</td>
+        </tr>
+        <tr class="kpi-channel">
+          <td>Pharmacy MTM referrals / tháng</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>5</td><td>12</td><td>20</td><td>30</td><td>40</td><td>50</td>
+          <td>Monthly</td><td>Monthly</td><td>MTM platform</td><td>PharmD</td>
+          <td>Ký 3–5 pharmacy agreements trước tháng 2</td>
+        </tr>
+        <!-- Channel KPIs - BD -->
+        <tr class="kpi-channel">
+          <td>Senior center E&M inquiries / tháng</td>
+          <td><span class="badge badge-bd">BD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>8</td><td>15</td><td>25</td><td>35</td><td>45</td><td>55</td>
+          <td>Monthly</td><td>Monthly</td><td>CRM intake form</td><td>BD Coordinator</td>
+          <td>Messaging: 'Gặp bác sĩ VN qua video khi cần' — KHÔNG dùng AWV language</td>
+        </tr>
+        <tr class="kpi-channel">
+          <td>Facebook inquiries / tháng</td>
+          <td><span class="badge badge-bd">BD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>15</td><td>25</td><td>35</td><td>45</td><td>55</td><td>65</td>
+          <td>Weekly</td><td>Weekly</td><td>Messenger/form tracking</td><td>BD Digital</td>
+          <td>Track per group để identify top-performing groups</td>
+        </tr>
+        <tr class="kpi-channel">
+          <td>Chùa/nhà thờ inquiries / tháng</td>
+          <td><span class="badge badge-bd">BD</span></td>
+          <td><span style="color:#3730a3;font-weight:600;font-size:11px">Channel KPI</span></td>
+          <td>0</td><td>5</td><td>12</td><td>18</td><td>25</td><td>32</td>
+          <td>Monthly</td><td>Monthly</td><td>Care coordinator log</td><td>BD Community</td>
+          <td>0 tháng 1 = xây relationship; health talk đầu tiên tháng 2–3</td>
+        </tr>
+        <!-- Quality -->
+        <tr class="kpi-quality">
+          <td>CCM documentation collection rate</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#721c24;font-weight:600;font-size:11px">Quality</span></td>
+          <td>N/A</td><td>80%+</td><td>85%+</td><td>88%+</td><td>88%+</td><td>90%+</td>
+          <td>Monthly</td><td>Monthly</td><td>Billing audit</td><td>Biller/RCM</td>
+          <td>Nếu &lt; 80%: STOP thêm BN, fix documentation trước — mỗi % = tiền thật</td>
+        </tr>
+        <tr class="kpi-quality">
+          <td>E&M claim denial rate</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#721c24;font-weight:600;font-size:11px">Quality</span></td>
+          <td>N/A</td><td>&lt;15%</td><td>&lt;12%</td><td>&lt;10%</td><td>&lt;8%</td><td>&lt;8%</td>
+          <td>Monthly</td><td>Monthly</td><td>Clearinghouse report</td><td>Biller/RCM</td>
+          <td>E&M denial cao hơn CCM vì cần medical necessity documentation cụ thể</td>
+        </tr>
+        <tr class="kpi-quality">
+          <td>CCM monthly contact completion %</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#721c24;font-weight:600;font-size:11px">Quality</span></td>
+          <td>N/A</td><td>90%+</td><td>92%+</td><td>95%+</td><td>95%+</td><td>95%+</td>
+          <td>Monthly</td><td>Monthly</td><td>EHR time log</td><td>Care Coordinator</td>
+          <td>Bệnh nhân không liên lạc được 2 tháng = churn risk cao</td>
+        </tr>
+        <tr class="kpi-quality">
+          <td>Care coordinator response time</td>
+          <td><span class="badge badge-bd">BD</span></td>
+          <td><span style="color:#721c24;font-weight:600;font-size:11px">Quality</span></td>
+          <td>≤4h</td><td>≤3h</td><td>≤2h</td><td>≤2h</td><td>≤2h</td><td>≤2h</td>
+          <td>Daily</td><td>Weekly</td><td>CRM timestamp</td><td>CC Lead</td>
+          <td>Response time = conversion rate. &gt; 4h = 40% drop-off trong thị trường này</td>
+        </tr>
+        <!-- Revenue -->
+        <tr class="kpi-revenue">
+          <td><strong>Doanh thu CCM/tháng (gross)</strong></td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#1e40af;font-weight:600;font-size:11px">Revenue ($)</span></td>
+          <td>$1,500</td><td>$4,000</td><td>$7,500</td><td>$13,500</td><td>$23,000</td><td>$33,000</td>
+          <td>Monthly</td><td>Monthly</td><td>Billing system</td><td>Biller/RCM</td>
+          <td>30–45 ngày payment lag; tháng 2 mới nhận tiền tháng 1</td>
+        </tr>
+        <tr class="kpi-revenue">
+          <td><strong>Doanh thu E&M/tháng (gross)</strong></td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#1e40af;font-weight:600;font-size:11px">Revenue ($)</span></td>
+          <td>$600</td><td>$1,400</td><td>$2,400</td><td>$4,000</td><td>$6,200</td><td>$8,200</td>
+          <td>Monthly</td><td>Monthly</td><td>Billing system</td><td>Biller/RCM</td>
+          <td>E&M &lt;= 20% tổng revenue; monitor closely vs policy risk</td>
+        </tr>
+        <tr class="kpi-revenue">
+          <td><strong>Doanh thu MTM/năm (projected)</strong></td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#1e40af;font-weight:600;font-size:11px">Revenue ($)</span></td>
+          <td>$360</td><td>$960</td><td>$1,800</td><td>$3,000</td><td>$4,560</td><td>$6,600</td>
+          <td>Quarterly</td><td>Monthly</td><td>Outcomes MTM</td><td>PharmD</td>
+          <td>Revenue từ MTM thấp — track strategic value (MTM→CCM conversion) là KPI chính</td>
+        </tr>
+        <tr class="kpi-revenue" style="border-top:2px solid var(--navy)">
+          <td><strong>TỔNG DOANH THU/THÁNG (gross)</strong></td>
+          <td><span class="badge badge-both">Cả 2</span></td>
+          <td><span style="color:#1e40af;font-weight:600;font-size:11px">Revenue ($)</span></td>
+          <td><strong>$2,460</strong></td><td><strong>$6,360</strong></td><td><strong>$11,700</strong></td><td><strong>$20,500</strong></td><td><strong>$33,760</strong></td><td><strong>$47,800</strong></td>
+          <td>Monthly</td><td>Monthly</td><td>Billing consolidated</td><td>CFO/Bác sĩ</td>
+          <td>Target break-even Month 5–7 với 50–65 BN</td>
+        </tr>
+        <!-- Milestones -->
+        <tr class="kpi-milestone">
+          <td>IMLC license — số bang</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#6b21a8;font-weight:600;font-size:11px">Milestone</span></td>
+          <td>CA/AZ/NV</td><td>TX/VA/WA filed</td><td>TX/VA/WA active</td><td>MA/GA/FL filed</td><td>MA/GA/FL active</td><td>25+ states</td>
+          <td>Monthly</td><td>Monthly</td><td>IMLC tracker</td><td>MD Primary</td>
+          <td>Licensing là điều kiện sine qua non để serve patients toàn quốc</td>
+        </tr>
+        <tr class="kpi-milestone">
+          <td>Số VN PCPs đang active referral</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#6b21a8;font-weight:600;font-size:11px">Milestone</span></td>
+          <td>0</td><td>2</td><td>5</td><td>8</td><td>12</td><td>15</td>
+          <td>Monthly</td><td>Monthly</td><td>Referral log</td><td>MD Secondary</td>
+          <td>Build MD relationships song song — không chờ đến khi cần</td>
+        </tr>
+        <tr class="kpi-milestone">
+          <td>Số pharmacy partnerships</td>
+          <td><span class="badge badge-md">MD</span></td>
+          <td><span style="color:#6b21a8;font-weight:600;font-size:11px">Milestone</span></td>
+          <td>2</td><td>5</td><td>8</td><td>10</td><td>13</td><td>15</td>
+          <td>Monthly</td><td>Monthly</td><td>Partnership log</td><td>PharmD</td>
+          <td>Target 15 pharmacies active tháng 6 để scale MTM</td>
+        </tr>
+        <tr class="kpi-milestone">
+          <td>MA plan conversations opened</td>
+          <td><span class="badge badge-both">MD + BD</span></td>
+          <td><span style="color:#6b21a8;font-weight:600;font-size:11px">Milestone</span></td>
+          <td>0</td><td>0</td><td>0</td><td>1</td><td>2</td><td>3</td>
+          <td>Quarterly</td><td>Monthly</td><td>BD CRM</td><td>MD + BD Lead</td>
+          <td>Chỉ mở conversation sau khi có outcomes data từ tháng 3–4</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 5: Chân Dung Khách Hàng
+════════════════════════════════════════════════════ -->
+<section class="tab-panel" id="panel-4">
+  <h2 class="section-title">Chân Dung Khách Hàng — 5 Persona: MEDI 65+ (CCM / MTM / E&M)</h2>
+  <p class="section-subtitle">End Users (Bà Lan, Ông Minh, Bà Thu) | Decision Makers (Chị Hoa, Anh Tuấn) | 70% trường hợp: con cái đặt lịch thay bệnh nhân</p>
+
+  <div class="persona-grid">
+
+    <!-- Bà Lan -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-name">Bà Lan — 72 tuổi</div>
+        <div class="persona-role">End User · Passive</div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-row"><div class="persona-label">Demographics & Location</div><div class="persona-val">72t · Orange County CA · Nhập cư 1985 · SSI $943/tháng · Sống với con gái + cháu · Cấp 2 VN</div></div>
+        <div class="persona-row"><div class="persona-label">Tình trạng sức khỏe</div><div class="persona-val">HTN + DM type 2 + Viêm khớp · Uống 6–8 thuốc/ngày · Không nhớ tên thuốc nào</div></div>
+        <div class="persona-row"><div class="persona-label">Nhận thức bảo hiểm</div><div class="persona-val">Biết 'thẻ đỏ Medicare' · Không biết Part B/D là gì · Con gái manage toàn bộ · CMR completion = 0%</div></div>
+        <div class="persona-row"><div class="persona-label">Hành vi digital</div><div class="persona-val">Zalo trên điện thoại con cho · YouTube tiếng Việt (cải lương) · Không có email, không self-search</div></div>
+        <div class="persona-row"><div class="persona-label">Kênh tìm kiếm dịch vụ</div><div class="persona-val">Chùa Phật giáo (mỗi tuần) · Hội phụ nữ cao tuổi · TV SBTN/VietFace · Người quen kể</div></div>
+        <div class="persona-row"><div class="persona-label">Pain points chính</div><div class="persona-val">Sợ bác sĩ Mỹ — nói không hiểu · Phụ thuộc con đưa đi khám · Bệnh xấu đi nhưng không nói vì sợ con lo · Không biết thuốc nào trị bệnh gì</div></div>
+        <div class="persona-row"><div class="persona-label">Yếu tố tạo niềm tin</div><div class="persona-val">Bác sĩ người Việt nói tiếng Việt · Người quen đã dùng giới thiệu · Sư thầy / cộng đồng chùa ủng hộ · Con cái tin và cho phép</div></div>
+        <div class="persona-row"><div class="persona-label">Rào cản chuyển đổi</div><div class="persona-val">Chờ con quyết định hộ · Sợ thay đổi bác sĩ quen · Không biết video call · Tâm lý 'đang ổn rồi'</div></div>
+        <div class="persona-row"><div class="persona-label">Trigger đặt lịch</div><div class="persona-val">Con gái tìm dịch vụ sau lần nhập viện · Bạn chùa kể đã dùng và hay · Con gái đặt lịch E&M thay bà</div></div>
+        <div class="persona-row"><div class="persona-label">Dịch vụ phù hợp</div><div class="persona-val">CCM (primary) + MTM</div></div>
+        <div class="persona-row"><div class="persona-label">Chiến lược tiếp cận</div><div class="persona-val">BD: Chùa + Senior center · MD: Hospital discharge sau nhập viện · Key: Pitch cho con gái trước, không phải Bà Lan</div></div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>2. Phân tích theo vị trí địa lý quan trọng</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Bang</th>
-                    <th>Dân số người Việt</th>
-                    <th>% Medicare</th>
-                    <th>% Medicaid</th>
-                    <th>Ghi chú</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>California</td>
-                    <td>~750,000</td>
-                    <td>26.1%</td>
-                    <td>22.3%</td>
-                    <td>Medicaid (Medi-Cal) có telehealth coverage tốt</td>
-                </tr>
-                <tr>
-                    <td>Texas</td>
-                    <td>~220,000</td>
-                    <td>23.8%</td>
-                    <td>14.2%</td>
-                    <td>Medicaid expansion chưa đầy đủ</td>
-                </tr>
-                <tr>
-                    <td>Virginia</td>
-                    <td>~80,000</td>
-                    <td>22.4%</td>
-                    <td>15.8%</td>
-                    <td>DC Metro area, thu nhập cao hơn</td>
-                </tr>
-                <tr>
-                    <td>Washington</td>
-                    <td>~70,000</td>
-                    <td>24.6%</td>
-                    <td>17.9%</td>
-                    <td>Apple Health (Medicaid) hỗ trợ telehealth</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Ông Minh -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-name">Ông Minh — 67 tuổi</div>
+        <div class="persona-role">End User · Partial Decision Maker</div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-row"><div class="persona-label">Demographics & Location</div><div class="persona-val">67t · Houston TX · Cựu chiến binh VNCH · Lương hưu ~$1,400/tháng · Bằng trung học VN</div></div>
+        <div class="persona-row"><div class="persona-label">Tình trạng sức khỏe</div><div class="persona-val">COPD giai đoạn 2 + HTN + Pre-diabetic · Hút thuốc 20 năm (bỏ 5 năm)</div></div>
+        <div class="persona-row"><div class="persona-label">Nhận thức bảo hiểm</div><div class="persona-val">Biết Medicare Part B, có Part D · Tự mua thuốc bên ngoài vì 'rẻ hơn' · Chưa biết CCM tồn tại</div></div>
+        <div class="persona-row"><div class="persona-label">Hành vi digital</div><div class="persona-val">Facebook thường xuyên — tin tức VN · YouTube: nhạc vàng, tin tức · Google khi có triệu chứng</div></div>
+        <div class="persona-row"><div class="persona-label">Kênh tìm kiếm dịch vụ</div><div class="persona-val">Facebook groups người Việt TX · Little Saigon Radio · Bạn bè đồng niên · Nhà thờ Công giáo người Việt</div></div>
+        <div class="persona-row"><div class="persona-label">Pain points chính</div><div class="persona-val">Lái xe 45 phút đến bác sĩ VN duy nhất · Chờ 2–3 giờ, khám 10 phút · COPD flare-up giữa đêm không có ai gọi · Tự đổi liều thuốc khi thấy 'không cần'</div></div>
+        <div class="persona-row"><div class="persona-label">Yếu tố tạo niềm tin</div><div class="persona-val">Bạn bè đã dùng và xác nhận tốt · Bác sĩ có bằng cấp rõ ràng, licensed tại TX · Được thử 1 lần free trước · Radio/media người Việt đề cập</div></div>
+        <div class="persona-row"><div class="persona-label">Rào cản chuyển đổi</div><div class="persona-val">Hoài nghi telehealth 'khám qua điện thoại được không?' · Gắn bó với bác sĩ quen dù khó lịch · Không muốn vợ biết bệnh thêm</div></div>
+        <div class="persona-row"><div class="persona-label">Trigger đặt lịch</div><div class="persona-val">Đợt COPD flare-up, khó thở ban đêm · Bạn bè Facebook chia sẻ dịch vụ · Bác sĩ cũ không nhận Medicare nữa</div></div>
+        <div class="persona-row"><div class="persona-label">Dịch vụ phù hợp</div><div class="persona-val">CCM + E&M (has symptoms) + MTM</div></div>
+        <div class="persona-row"><div class="persona-label">Chiến lược tiếp cận</div><div class="persona-val">BD: Facebook groups + Hội cựu chiến binh · MD: PCP referral + pharmacy · Key: Social proof từ peers cùng thế hệ</div></div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>3. Phân Tích Theo Thế Hệ</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Thế hệ</th>
-                    <th>% có bảo hiểm</th>
-                    <th>Loại bảo hiểm chính</th>
-                    <th>Ghi chú</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1st Gen (≥55 tuổi)</td>
-                    <td>0.68</td>
-                    <td>Medicare (42%), Medicaid (24%)</td>
-                    <td>LEP cao</td>
-                </tr>
-                <tr>
-                    <td>1.5 Gen (35-54)</td>
-                    <td>0.73</td>
-                    <td>Employer (58%), Medicaid (15%)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2nd Gen (18-34)</td>
-                    <td>0.76</td>
-                    <td>Employer (65%), Parents' plan (20%)</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Chị Hoa -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-name">Chị Hoa — 41 tuổi</div>
+        <div class="persona-role">Decision Maker · Buyer</div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-row"><div class="persona-label">Demographics & Location</div><div class="persona-val">41t · San Jose CA · Kỹ sư phần mềm $120K · Song ngữ Việt-Anh · 2 con nhỏ, ba mẹ sống cùng</div></div>
+        <div class="persona-row"><div class="persona-label">Tình trạng sức khỏe (gia đình)</div><div class="persona-val">Bản thân khỏe · Ba: DM2 + HTN · Mẹ: Loãng xương + trầm cảm</div></div>
+        <div class="persona-row"><div class="persona-label">Nhận thức bảo hiểm</div><div class="persona-val">Hiểu rõ Medicare Part B/D · Đã tra về CCM sau khi đọc Forbes · Biết ba mẹ eligible nhưng chưa tìm được provider VN</div></div>
+        <div class="persona-row"><div class="persona-label">Hành vi digital</div><div class="persona-val">Google search chuyên sâu · Reddit r/AgingParents · Facebook caregiver groups · Đọc reviews kỹ, so sánh ≥3 options</div></div>
+        <div class="persona-row"><div class="persona-label">Kênh tìm kiếm dịch vụ</div><div class="persona-val">Google 'Vietnamese Medicare doctor telehealth' · Yelp reviews bác sĩ VN · Hỏi đồng nghiệp người Việt · Facebook caregiver groups</div></div>
+        <div class="persona-row"><div class="persona-label">Pain points chính</div><div class="persona-val">Mất 4–6 giờ/tháng đưa ba mẹ đi khám · Không ai theo dõi ba uống thuốc đúng · Phải làm phiên dịch tại phòng khám · Lo ba mẹ ở nhà một mình</div></div>
+        <div class="persona-row"><div class="persona-label">Yếu tố tạo niềm tin</div><div class="persona-val">Licensed MD verifiable credentials · HIPAA compliance rõ ràng · Monthly report gửi cho chị xem · Google/Yelp reviews tích cực</div></div>
+        <div class="persona-row"><div class="persona-label">Rào cản chuyển đổi</div><div class="persona-val">Lo chất lượng telehealth &lt; in-person · Ba mẹ chưa chịu — cần thuyết phục 2 bên · Sợ hệ thống phức tạp thêm việc cho mình</div></div>
+        <div class="persona-row"><div class="persona-label">Trigger đặt lịch</div><div class="persona-val">Ba nhập viện — cú sốc tìm giải pháp chủ động · Đồng nghiệp kể đã dùng dịch vụ tương tự · Google search lúc 11pm tìm thấy MEDI 65+</div></div>
+        <div class="persona-row"><div class="persona-label">Dịch vụ phù hợp</div><div class="persona-val">CCM cho ba mẹ + MTM cross-sell</div></div>
+        <div class="persona-row"><div class="persona-label">Chiến lược tiếp cận</div><div class="persona-val">BD: Google SEO tiếng Anh + Facebook caregiver · Key: Pitch time-saving + peace of mind cho chị, không phải bệnh lý</div></div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>4. Mức hoàn trả của Medicare với các dịch vụ telehealth</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Dịch Vụ</th>
-                    <th>Mã CPT (Code)</th>
-                    <th>Mức Hoàn Trả (USD)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>New Patient Visit (Level 4)</td>
-                    <td>99204</td>
-                    <td>$183.19</td>
-                </tr>
-                <tr>
-                    <td>Established Patient Visit (Level 4)</td>
-                    <td>99214</td>
-                    <td>$145.63</td>
-                </tr>
-                <tr>
-                    <td>Annual Wellness Visit (AWV) - Initial</td>
-                    <td>G0438</td>
-                    <td>$174.26</td>
-                </tr>
-                <tr>
-                    <td>Annual Wellness Visit (AWV) - Subsequent</td>
-                    <td>G0439</td>
-                    <td>$129.38</td>
-                </tr>
-                <tr>
-                    <td>Chronic Care Mgmt (CCM) - 20 min</td>
-                    <td>99490</td>
-                    <td>$63.94</td>
-                </tr>
-                <tr>
-                    <td>Remote Patient Monitoring (RPM) - Setup</td>
-                    <td>99453</td>
-                    <td>$20.40</td>
-                </tr>
-                <tr>
-                    <td>Remote Patient Monitoring (RPM) - 16 days</td>
-                    <td>99457</td>
-                    <td>$53.45</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Anh Tuấn -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-name">Anh Tuấn — 36 tuổi</div>
+        <div class="persona-role">Remote Decision Maker · Buyer</div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-row"><div class="persona-label">Demographics & Location</div><div class="persona-val">36t · Seattle WA · Data analyst $95K · Ba mẹ ở Garden Grove CA (cách 1,200 miles)</div></div>
+        <div class="persona-row"><div class="persona-label">Tình trạng sức khỏe (gia đình)</div><div class="persona-val">Ba: HTN + CKD giai đoạn 2 · Mẹ: DM, cần kiểm tra mắt · Anh không biết ba uống thuốc đúng không</div></div>
+        <div class="persona-row"><div class="persona-label">Nhận thức bảo hiểm</div><div class="persona-val">Hiểu Medicare cơ bản · Quan tâm RPM (xem data từ WA) · Sẵn sàng trả thêm nếu có value rõ ràng</div></div>
+        <div class="persona-row"><div class="persona-label">Hành vi digital</div><div class="persona-val">Research intensively online · Reddit, Hacker News, Quora · Mua quyết định online hoàn toàn · LinkedIn discussions elder care</div></div>
+        <div class="persona-row"><div class="persona-label">Kênh tìm kiếm dịch vụ</div><div class="persona-val">Google, Reddit, online forums · LinkedIn aging parents content · Facebook groups caregiver VN-Mỹ</div></div>
+        <div class="persona-row"><div class="persona-label">Pain points chính</div><div class="persona-val">Không biết ba uống thuốc đúng không · Không có hệ thống alert khi ba khó thở lúc 2am · Guilt về khoảng cách · Ba mẹ không nói thật tình trạng sức khỏe</div></div>
+        <div class="persona-row"><div class="persona-label">Yếu tố tạo niềm tin</div><div class="persona-val">Monthly report gửi email cho anh · RPM dashboard — xem data real-time · Licensed MD verifiable online · Clear SLA phản hồi trong X giờ</div></div>
+        <div class="persona-row"><div class="persona-label">Rào cản chuyển đổi</div><div class="persona-val">Không verify được chất lượng từ xa · Ba mẹ chưa chịu — cần onboard riêng · Lo dịch vụ tốt lúc đầu rồi giảm chất</div></div>
+        <div class="persona-row"><div class="persona-label">Trigger đặt lịch</div><div class="persona-val">Ba gọi lúc 2am khó thở, phải gọi 911 · Reddit post về telehealth VN cho ba mẹ · Nghe về RPM dashboard xem data từ xa</div></div>
+        <div class="persona-row"><div class="persona-label">Dịch vụ phù hợp</div><div class="persona-val">CCM + RPM (remote monitoring dashboard)</div></div>
+        <div class="persona-row"><div class="persona-label">Chiến lược tiếp cận</div><div class="persona-val">BD: Reddit + online content · MD: Pitch RPM dashboard cụ thể · Key: 'Chúng tôi là đôi mắt của bạn tại CA'</div></div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>5. Mức cover của Medicaid tại các bang chính (nhiều người Việt)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Dịch Vụ</th>
-                    <th>CA (Medi-Cal)</th>
-                    <th>TX (Texas)</th>
-                    <th>VA (Virginia)</th>
-                    <th>WA (Washington)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Video Visit</td>
-                    <td>Full (Chi trả 100% như khám trực tiếp)</td>
-                    <td>80% (Chỉ trả ~80% mức khám trực tiếp)</td>
-                    <td>Full</td>
-                    <td>Full</td>
-                </tr>
-                <tr>
-                    <td>AWV (Khám sức khỏe hàng năm)</td>
-                    <td>Có</td>
-                    <td>Limited (Hạn chế)</td>
-                    <td>Có</td>
-                    <td>Có</td>
-                </tr>
-                <tr>
-                    <td>CCM (Quản lý bệnh mãn tính)</td>
-                    <td>Via MCO (Qua các tổ chức Managed Care)</td>
-                    <td>Via MCO</td>
-                    <td>Có</td>
-                    <td>Có</td>
-                </tr>
-                <tr>
-                    <td>RPM (Theo dõi từ xa)</td>
-                    <td>Via MCO</td>
-                    <td>Limited (Hạn chế)</td>
-                    <td>Có</td>
-                    <td>Có</td>
-                </tr>
-                <tr>
-                    <td>Audio-only (Chỉ gọi thoại)</td>
-                    <td>Chỉ cho sức khỏe tâm thần (BH Only)</td>
-                    <td>X (Không chi trả)</td>
-                    <td>Limited</td>
-                    <td>Có</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Bà Thu -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-name">Bà Thu — 71 tuổi</div>
+        <div class="persona-role">End User · Dual Eligible</div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-row"><div class="persona-label">Demographics & Location</div><div class="persona-val">71t · New Orleans LA · Góa phụ, sống một mình · Medicare + Medicaid $780/tháng · Không có con tại Mỹ</div></div>
+        <div class="persona-row"><div class="persona-label">Tình trạng sức khỏe</div><div class="persona-val">DM2 + CKD giai đoạn 3 + HTN + Trầm cảm nhẹ · 9 thuốc/ngày · 55% non-adherent · Nhập viện 2 lần năm ngoái</div></div>
+        <div class="persona-row"><div class="persona-label">Nhận thức bảo hiểm</div><div class="persona-val">Rất confused về Medicare vs Medicaid · Sợ 'mất quyền lợi' nếu thay đổi · Chưa bao giờ được offer CMR</div></div>
+        <div class="persona-row"><div class="persona-label">Hành vi digital</div><div class="persona-val">Không có smartphone · Điện thoại bàn · Xem TV SBTN · Nghe radio tiếng Việt · Tất cả info qua người quen</div></div>
+        <div class="persona-row"><div class="persona-label">Kênh tìm kiếm dịch vụ</div><div class="persona-val">Senior center người Việt · Hội người cao tuổi New Orleans · Community health workers · Hàng xóm người Việt</div></div>
+        <div class="persona-row"><div class="persona-label">Pain points chính</div><div class="persona-val">Sống một mình — không ai nhận ra khi bệnh xấu · Không biết 9 thuốc uống để làm gì · Sợ tốn tiền dù không phải trả thêm · Trauma lịch sử → distrust institutions</div></div>
+        <div class="persona-row"><div class="persona-label">Yếu tố tạo niềm tin</div><div class="persona-val">Community health worker VN giới thiệu trực tiếp · Thành viên hội/chùa đã dùng và kể · Xác nhận '$0 thêm, Medicaid vẫn nguyên' · Gặp bác sĩ VN lần đầu miễn phí</div></div>
+        <div class="persona-row"><div class="persona-label">Rào cản chuyển đổi</div><div class="persona-val">Sợ mất Medicaid benefits hiện có · Không có ai hỗ trợ setup điện thoại/tablet · Institutional distrust từ kinh nghiệm lịch sử</div></div>
+        <div class="persona-row"><div class="persona-label">Trigger đặt lịch</div><div class="persona-val">Xuất viện — community health worker tiếp cận ngay · Senior center tổ chức buổi giới thiệu tiếng Việt · Hàng xóm dùng và dẫn bà đến gặp coordinator</div></div>
+        <div class="persona-row"><div class="persona-label">Dịch vụ phù hợp</div><div class="persona-val">CCM + MTM + E&M (highest clinical complexity)</div></div>
+        <div class="persona-row"><div class="persona-label">Chiến lược tiếp cận</div><div class="persona-val">MD: Hospital discharge + CHW · BD: Senior center + Chùa · Key: Nhất định cần in-person trust building trước</div></div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>6. Mức cover của CHIP</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Dịch Vụ</th>
-                    <th>Mức Độ Coverage</th>
-                    <th>Ghi Chú Chi Tiết</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Video Visits (Khám bác sĩ qua video)</td>
-                    <td>✅ Full</td>
-                    <td>Được chi trả ngang bằng với khám trực tiếp (in-person visit).</td>
-                </tr>
-                <tr>
-                    <td>Well-Child Visits (Khám sức khỏe định kỳ)</td>
-                    <td>✅ Full</td>
-                    <td>Miễn phí hoàn toàn (No copay). Bao gồm tiêm chủng, theo dõi phát triển.</td>
-                </tr>
-                <tr>
-                    <td>Mental Health Services (Sức khỏe tâm thần)</td>
-                    <td>✅ Full</td>
-                    <td>Ưu tiên cao. Nhiều bang chấp nhận cả Audio-only (gọi thoại) cho dịch vụ này.</td>
-                </tr>
-                <tr>
-                    <td>Behavioral Health (Sức khỏe hành vi)</td>
-                    <td>✅ Full</td>
-                    <td>Bao gồm sàng lọc trầm cảm (depression), lo âu (anxiety).</td>
-                </tr>
-                <tr>
-                    <td>Specialist Consultations (Khám chuyên khoa)</td>
-                    <td>✅ Full</td>
-                    <td>Được chi trả khi có giấy chuyển tuyến (referral) từ bác sĩ nhi khoa.</td>
-                </tr>
-                <tr>
-                    <td>Medication Management (Quản lý thuốc)</td>
-                    <td>✅ Full</td>
-                    <td>Chi trả cho các buổi tái khám để theo dõi/điều chỉnh đơn thuốc.</td>
-                </tr>
-                <tr>
-                    <td>School-Based Telehealth</td>
-                    <td>✅ Full</td>
-                    <td>Cho phép trẻ khám bệnh ngay tại phòng y tế trường học qua video kết nối với bác sĩ.</td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SHEET 6: Customer Journey
+════════════════════════════════════════════════════ -->
+<section class="tab-panel" id="panel-5">
+  <h2 class="section-title">Customer Journey Map — MEDI 65+ (CCM / MTM / E&M)</h2>
+  <p class="section-subtitle">Updated: AWV replaced by E&M | 8 bước: Community/Hospital → E&M qualifying → CCM enroll → CCM monthly → MTM cross-sell → Advocacy<br>
+  Khác AWV cũ: E&M không phải 'free entry' — cần lý do lâm sàng</p>
+
+  <div class="journey-steps">
+
+    <!-- Step 1 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">1</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">Nhận biết (Awareness)</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">Hospital discharge · Senior center · Facebook · Chùa/nhà thờ · Radio/TV · Google SEO</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">BN hoặc con cái lần đầu nghe về MEDI 65+ qua: (a) Bạn bè/người quen kể; (b) Facebook groups; (c) Senior center health talk; (d) Bác sĩ / case manager giới thiệu sau xuất viện; (e) Google search tiếng Anh</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">Team BD + CHW (MD chỉ tham gia khi hospital discharge)</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Tò mò hoặc bị thúc đẩy bởi sự kiện (nhập viện, bạn bè kể) · Con cái: tìm kiếm giải pháp sau crisis event</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Post nội dung tiếng Việt tại FB groups
+• Health talk tại senior center/chùa
+• Leave bilingual materials: 'Gặp bác sĩ VN qua video khi cần'
+• Ensure care coordinator phone line visible</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Case manager warm intro sau TCM contact
+• PCP: 'Tôi có đồng nghiệp chuyên chăm sóc bệnh nhân VN qua telehealth'
+• Pharmacy: brief patients khi lấy thuốc</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">Inquiries/tháng ≥ 30 (T3)<br>Inquiry sources tracked per channel</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Low engagement do AWV messaging cũ → PHẢI update tất cả materials từ '$0 AWV' sang E&M framing<br>Brand awareness thấp ngoài CA ban đầu</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>7. Mức cover của ACA</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Dịch Vụ</th>
-                    <th>Mức Độ Coverage</th>
-                    <th>Copay Điển Hình</th>
-                    <th>Ghi Chú Chi Tiết</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Primary Care Video Visits (Khám đa khoa từ xa)</td>
-                    <td>✅ Full</td>
-                    <td>$20 - $50</td>
-                    <td>Mức phí tương đương với đi khám bác sĩ gia đình (PCP) trực tiếp.</td>
-                </tr>
-                <tr>
-                    <td>Specialist Consultations (Tư vấn chuyên khoa)</td>
-                    <td>✅ Full</td>
-                    <td>$40 - $80</td>
-                    <td>Cần tuân thủ quy định network của gói (HMO cần referral, PPO thì không).</td>
-                </tr>
-                <tr>
-                    <td>Mental Health / Therapy (Trị liệu tâm lý)</td>
-                    <td>✅ Full</td>
-                    <td>$20 - $50</td>
-                    <td>Bao gồm các buổi tham vấn tâm lý qua video.</td>
-                </tr>
-                <tr>
-                    <td>Chronic Disease Mgmt (Quản lý bệnh mãn tính)</td>
-                    <td>✅ Full</td>
-                    <td>Included</td>
-                    <td>Thường được gộp trong chi phí khám PCP định kỳ.</td>
-                </tr>
-                <tr>
-                    <td>Medication Management (Quản lý thuốc)</td>
-                    <td>✅ Full</td>
-                    <td>Included</td>
-                    <td>Chi trả cho các buổi follow-up kê đơn.</td>
-                </tr>
-                <tr>
-                    <td>Preventive Care (Chăm sóc dự phòng)</td>
-                    <td>✅ Full</td>
-                    <td>$0</td>
-                    <td>Theo luật ACA, các dịch vụ dự phòng (sàng lọc, tư vấn sức khỏe) là miễn phí 100%.</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Step 2 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">2</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">Cân nhắc (Consideration)</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">Google search · Facebook · Phone call care coordinator · Reviews (Yelp/Google)</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">BN trực tiếp: hỏi người quen đã dùng, chờ ai đó 'thử trước', hỏi con cái ý kiến (2–8 tuần)<br>Con cái: Google check credentials, đọc reviews, so sánh ≥3 options, gọi hỏi trực tiếp (3–14 ngày)</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">Team BD: care coordinator trả lời câu hỏi<br>Team MD: physician bio visible trên website</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Hoài nghi + lo lắng về chất lượng telehealth · Con cái: muốn verify credentials và process · Bà Lan type: hoàn toàn phụ thuộc con quyết định</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Respond inquiries trong ≤2 giờ
+• Share testimonials từ bệnh nhân cùng cộng đồng
+• Video giới thiệu tiếng Việt ngắn (&lt;3 phút)
+• Clear FAQ: 'Tôi có phải trả tiền thêm không?'</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Physician bio + license verification accessible
+• HIPAA compliance documentation ready
+• Answer clinical questions qua care coordinator</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">≥50% inquiries → consultation booked trong 5 ngày<br>Response time ≤2 giờ</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">40% drop-off nếu response time &gt; 4 giờ<br>Lack of social proof ban đầu<br>Ba mẹ từ chối dù con cái muốn → cần dual-track outreach</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>8. Các loại phí của từng loại bảo hiểm</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Loại Bảo Hiểm</th>
-                    <th>Plan (Gói)</th>
-                    <th>Phí Premium (Tháng/Người)</th>
-                    <th>Deductible (Khấu trừ)</th>
-                    <th>Copay (Phí khám)</th>
-                    <th>Coinsurance (% đồng chi trả)</th>
-                    <th>OOP Maximum (Trần chi trả)</th>
-                    <th>Điều kiện đăng ký chính</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Employer-Sponsored (ESI)</td>
-                    <td>PPO (Phổ biến nhất)</td>
-                    <td>~$85 (Employee trả) / ~$645 (Tổng)</td>
-                    <td>~$1,735 (Single In-network)</td>
-                    <td>PCP: $25-30<br>Specialist: $40-50</td>
-                    <td>20% (sau deductible)</td>
-                    <td>$5,200 (Single)</td>
-                    <td>Làm việc Full-time (≥30h/tuần) tại công ty lớn</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>HMO</td>
-                    <td>~$80-100 (Employee trả)</td>
-                    <td>~$1,200 (Single)</td>
-                    <td>PCP: $20<br>Specialist: $35</td>
-                    <td>15-20%</td>
-                    <td>$4,800 (Single)</td>
-                    <td>Làm việc Full-time (như trên)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>HDHP + HSA</td>
-                    <td>Thấp nhất (~$520 tổng)</td>
-                    <td>~$3,000 (Single)</td>
-                    <td>$0 (sau khi trả hết Deductible)</td>
-                    <td>0.2</td>
-                    <td>$6,000 (Single)</td>
-                    <td>Làm việc Full-time (như trên)</td>
-                </tr>
-                <tr>
-                    <td>Medicaid</td>
-                    <td>Managed Care / FFS</td>
-                    <td>**$0**</td>
-                    <td>$0</td>
-                    <td>$0-5</td>
-                    <td>0</td>
-                    <td>Không có (Rất thấp)</td>
-                    <td>Thu nhập thấp (≤138% FPL).<br>VD: Single ≤$20,783/năm</td>
-                </tr>
-                <tr>
-                    <td>Medicare</td>
-                    <td>Part C (Advantage)</td>
-                    <td>Thường là $0** (ngoài phí Part B)</td>
-                    <td>$0 - $500</td>
-                    <td>PCP: $0-10<br>Specialist: $20-50</td>
-                    <td>0.2</td>
-                    <td>$4,000 - $8,850</td>
-                    <td>≥65 tuổi hoặc khuyết tật. Đã đóng thuế đủ hoặc mua.</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Original (A+B) + Medigap</td>
-                    <td>~$400-600 (Tổng hợp Part B, D, Medigap)</td>
-                    <td>Part B: $240/năm</td>
-                    <td>20% (thường được Medigap trả hộ)</td>
-                    <td>20% (Medigap trả hộ)</td>
-                    <td>Không giới hạn (trừ khi có Medigap)</td>
-                    <td>≥65 tuổi (như trên)</td>
-                </tr>
-                <tr>
-                    <td>ACA Marketplace</td>
-                    <td>Bronze</td>
-                    <td>$400-600 (chưa subsidy)</td>
-                    <td>$6,000 - $7,500</td>
-                    <td>Trả 100% trước deductible. Sau đó $40-60</td>
-                    <td>0.4</td>
-                    <td>$9,200</td>
-                    <td>Công dân/Thường trú nhân, không có BH khác</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Silver (Benchmark)</td>
-                    <td>$550-750 (chưa subsidy) / Avg $111 (sau subsidy)</td>
-                    <td>$3,000 - $5,000</td>
-                    <td>PCP: $30-50<br>Specialist: $60-80</td>
-                    <td>0.3</td>
-                    <td>$9,200</td>
-                    <td>Công dân/Thường trú nhân (như trên)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Catastrophic</td>
-                    <td>$200-400 (Rất thấp)</td>
-                    <td>$9,200</td>
-                    <td>Trả 100% đến khi đạt mức Deductible</td>
-                    <td>0% (sau deductible)</td>
-                    <td>$9,200</td>
-                    <td>Dưới 30 tuổi HOẶC miễn trừ khó khăn (Hardship)</td>
-                </tr>
-                <tr>
-                    <td>TRICARE (Military)</td>
-                    <td>Prime (HMO)</td>
-                    <td>Active: $0<br>Retirees: ~$63</td>
-                    <td>$0**</td>
-                    <td>Active: $0<br>Retirees: $21-32</td>
-                    <td>$0</td>
-                    <td>$3,800 (Family)</td>
-                    <td>Quân nhân tại ngũ hoặc về hưu & gia đình</td>
-                </tr>
-                <tr>
-                    <td>CHIP (Trẻ em)</td>
-                    <td>State Programs</td>
-                    <td>$0 - $50/năm</td>
-                    <td>**$0**</td>
-                    <td>$0 - $30</td>
-                    <td>0-5%</td>
-                    <td>5% thu nhập</td>
-                    <td>Trẻ <19 tuổi, thu nhập ~170-400% FPL</td>
-                </tr>
-                <tr>
-                    <td>VA Health Care</td>
-                    <td>Priority Groups</td>
-                    <td>**$0**</td>
-                    <td>**$0**</td>
-                    <td>$0 - $50 (tùy nhóm ưu tiên)</td>
-                    <td>Varies</td>
-                    <td>Tùy nhóm</td>
-                    <td>Cựu chiến binh (Veterans)</td>
-                </tr>
-                <tr>
-                    <td>Short-Term (STLDI)</td>
-                    <td>Limited Duration</td>
-                    <td>$100-350 (Rẻ)</td>
-                    <td>$1,000 - $10,000</td>
-                    <td>$30-50</td>
-                    <td>20-50%</td>
-                    <td>$10,000 - $25,000</td>
-                    <td>Phải qua thẩm định sức khỏe (Medical underwriting)</td>
-                </tr>
-                <tr>
-                    <td>Health Sharing</td>
-                    <td>Ministry Plans</td>
-                    <td>$200-500 (Share)</td>
-                    <td>$1,000 - $10,000 (Unshared Amount)</td>
-                    <td>Không có</td>
-                    <td>Chia sẻ 100% sau mức Unshared</td>
-                    <td>Không giới hạn (No Cap)</td>
-                    <td>Theo đạo Thiên Chúa (Christian faith), cam kết lối sống</td>
-                </tr>
-                <tr>
-                    <td>Direct Primary Care</td>
-                    <td>Membership</td>
-                    <td>$75-150</td>
-                    <td>N/A</td>
-                    <td>$0 (Bao gồm khám không giới hạn)</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Đóng phí thành viên (Không phải bảo hiểm)</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Step 3 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">3</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">Quyết định & Đặt lịch</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">Phone/Zalo · Website booking · Care coordinator call</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">70% trường hợp: con cái đặt lịch E&M cho ba mẹ<br>30%: BN tự đặt (chủ yếu Ông Minh type)<br>Care coordinator VN gọi xác nhận trong 2 giờ, verify Medicare eligibility, hướng dẫn setup video call step-by-step</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">Team BD: care coordinator<br>Team MD: verify eligibility</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Quyết định xảy ra trong 48h sau trigger cuối · Con cái: relieved khi tìm được giải pháp · BN: nervous về video call technology</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Confirm booking trong 2 giờ (tự động + personal call)
+• Guide setup video call: WhatsApp/Zoom step-by-step bằng tiếng Việt
+• Send bilingual reminder 24h trước
+• Consent form đơn giản nhất có thể</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Verify Medicare Part B active
+• Confirm no SNF/hospice exclusion
+• Prepare clinical brief từ prior records nếu có</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">E&M booked ≤3 ngày sau inquiry<br>No-show rate ≤20%</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Consent form phức tạp → 30% abandon<br>Setup video call thất bại với elderly không quen tech<br>Ba mẹ thay đổi ý kiến last-minute nếu không có con cái hỗ trợ</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="conclusion-box">
-        <h3>KẾT LUẬN</h3>
-        <ul>
-            <li>**Chiến lược "Mũi nhọn Medicare"**: CVH cần định vị mình là giải pháp chuyên biệt cho người cao tuổi (Senior Care). Tập trung tối đa nguồn lực để Billing Medicare (Part B & Advantage) vì đây là "mỏ vàng" doanh thu ổn định nhất với tệp khách hàng sẵn có lớn nhất.</li>
-            <li>**Chiến lược "Lấp đầy khoảng trống"**: Với 8.2% Uninsured, CVH nên đẩy mạnh gói Membership tự trả phí (Cash-based Subscription) cho nhóm này</li>
-        </ul>
-    </div>
-</div>
-
-<div id="Tab2" class="tab-content">
-    
-    <div class="table-container">
-        <h2>1. Thanh Toán Bằng Bảo Hiểm - Trong số những người đã dùng telehealth</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Phương Thức Thanh Toán</th>
-                    <th>% (Asian Americans)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Bảo hiểm chi trả toàn bộ hoặc phần lớn</td>
-                    <td>62.4%</td>
-                </tr>
-                <tr>
-                    <td>Tự chi trả (out-of-pocket)</td>
-                    <td>28.7%</td>
-                </tr>
-                <tr>
-                    <td>Không biết/Không trả lời</td>
-                    <td>8.9%</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="table-container">
-        <h2>2. Nhận Thức Về Bảo Hiểm Cover Telehealth</h2>
-        <div class="note">Survey câu hỏi: "Bạn có biết bảo hiểm của bạn cover telehealth không?"</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Response</th>
-                    <th>Asian Americans</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Có, biết rõ ràng</td>
-                    <td>34.2%</td>
-                </tr>
-                <tr>
-                    <td>Nghĩ là có nhưng không chắc</td>
-                    <td>41.8%</td>
-                </tr>
-                <tr>
-                    <td>Không biết</td>
-                    <td>18.7%</td>
-                </tr>
-                <tr>
-                    <td>Biết là không cover</td>
-                    <td>5.3%</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Step 4 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">4</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header" style="background:linear-gradient(135deg,#0e3a5c,#0e7a6e)">
+          <div class="step-phase">⭐ E&M Lần Đầu — AHA MOMENT (Qualifying visit)</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">Telehealth platform · EHR</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">BN gặp bác sĩ người Việt qua video — nói tiếng Việt, hiểu văn hóa · Bác sĩ khám, xử lý vấn đề lâm sàng<br><strong>[AHA MOMENT: 5 phút đầu — BN nghe bác sĩ nói tiếng Việt]</strong><br>Cuối buổi (2 phút): Pete giới thiệu CCM: 'Bạn có muốn được gọi theo dõi hàng tháng không?'</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">MD: Primary (E&M, CCM pitch)<br>Care Coordinator: technical support</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">AHA MOMENT: 'Bác sĩ nói tiếng Việt và hiểu tôi' · Relief sau khi được khám đúng cách · Con cái: thấy ba mẹ được chăm sóc chuyên nghiệp</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Follow up với con cái trong 2h sau visit: 'Ba/mẹ bạn đã nói chuyện tốt với bác sĩ hôm nay'
+• Send visit summary tiếng Việt cho BN và caregiver
+• Remind về CCM enrollment nếu BN chưa ký</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Conduct high-quality E&M (≥15 phút)
+• Document medical necessity rõ ràng cho billing
+• Pitch CCM tự nhiên cuối buổi — không hard sell
+• Create care plan sau buổi đầu</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">E&M → CCM consent: 60–70%<br>E&M satisfaction ≥ 4.5/5<br>Care plan documented same day</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Chất lượng E&M call = KPI quan trọng nhất của toàn bộ funnel<br>Technical failure = mất patient permanently<br>Bác sĩ không đủ thời gian → pitch CCM bị skip</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <h2>3. Rào cản đối với cộng đồng người Việt</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rào cản</th>
-                    <th>Chi tiết</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Rào Cản Ngôn Ngữ - Language Barrier</td>
-                    <td>- 44% người Việt tại Mỹ có LEP<br>- 65% người nhập cư thế hệ 1 (≥55 tuổi) LEP<br>- Insurance documents đều là tiếng Anh</td>
-                </tr>
-                <tr>
-                    <td>Health Insurance Literacy</td>
-                    <td>- Chỉ 28% Asian Americans hoàn toàn hiểu các quyền lợi của bảo hiểm<br>- 52% người Việt trưởng thành không tự tin khi nói về các điều khoản bảo hiểm</td>
-                </tr>
-                <tr>
-                    <td>Sợ Hóa Đơn Bất Ngờ (Surprise Billing)</td>
-                    <td>- Đi khám tưởng "in-network" nhưng lab/specialist out-of-network → bill cao<br>- Không hiểu cách bảo hiểm process claims</td>
-                </tr>
-                <tr>
-                    <td>Không Tin Telehealth Được Cover</td>
-                    <td>Như bảng trên</td>
-                </tr>
-                <tr>
-                    <td>Provider Network Limitations</td>
-                    <td>- Ít bác sĩ nói tiếng Việt trong network<br>- Muốn gặp bác sĩ Việt → often out-of-network → higher cost<br>- Telehealth: nếu provider out-of-network → rate hoàn trả thấp hoặc không</td>
-                </tr>
-                <tr>
-                    <td>Cross-State Licensing Barriers</td>
-                    <td>- Nguyên tắc: BS phải có License tại bang của BN.<br>- IMLC (Hiệp ước liên bang): 40 bang tham gia (hỗ trợ xin giấy phép nhanh), nhưng không bắt buộc (có thể xin lẻ)</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Step 5 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">5</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">CCM Enroll (Conversion)</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">EHR · Prevounce · Billing clearinghouse</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">BN ký CCM consent (nếu chưa ký cuối E&M)<br>Care plan được lập — 27 bệnh mãn tính checked<br>Tháng đầu tiên: care coordinator gọi ≥20 phút tiếng Việt<br>Billing CCM claims cuối tháng (30–45 ngày payment lag)</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">MD: Care plan sign-off<br>Care Coordinator: monthly call<br>Biller: claims submission</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Committed → tin tưởng hơn sau cuộc gọi đầu tiên · Cảm giác 'có người lo cho mình' — đặc biệt mạnh với Bà Lan và Bà Thu</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Send CCM enrollment confirmation tiếng Việt cho cả BN và caregiver (email + Zalo)
+• Explain what happens next: 'Mỗi tháng chúng tôi sẽ gọi hỏi thăm bạn'
+• Set expectations về frequency và process</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Physician sign CCM care plan
+• Set up RPM device nếu applicable (Ông Minh type)
+• Begin CCM time logging from Day 1</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">65–70% E&M → CCM enrolled<br>CCM billing thành công tháng 1<br>Collection rate ≥ 80%</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Documentation không đủ → claim denied (15–25% tại practices mới)<br>BN thay đổi ý kiến trước khi tháng đầu hoàn thành<br>Consent không ký kịp trước end of month</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="conclusion-box">
-        <h3>SELLING POINTS</h3>
-        <ul>
-            <li>**Đội ngũ CSKH/Sales phải đóng vai trò là "Chuyên gia gỡ rối bảo hiểm"**: sẵn sàng tra soát khả năng chi trả của bảo hiểm trước khi khách hàng sử dụng dịch vụ => mang lại sự an tâm cho khách hàng, tránh những hóa đơn bất ngờ</li>
-            <li>**Giáo dục thị trường**: Triển khai chiến dịch truyền thông: "Bảo hiểm của bạn CÓ chi trả cho Telehealth – Đừng lãng phí quyền lợi"</li>
-            <li>**USP (Lợi điểm bán hàng)**: Nhấn mạnh yếu tố "Bác sĩ người Việt" để giải quyết triệt để nỗi đau rào cản ngôn ngữ và sự thiếu tin tưởng vào hệ thống y tế Mỹ</li>
-        </ul>
-    </div>
-</div>
-
-<div id="Tab3" class="tab-content">
-    
-    <div class="table-container">
-        <h2>Tình trạng chi trả cho 12 dịch vụ</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Nhóm</th>
-                    <th>Tên Dịch vụ</th>
-                    <th>Khả năng Bảo hiểm chi trả</th>
-                    <th>Mã CPT gợi ý (Tham khảo)</th>
-                    <th>Điều kiện / Ghi chú quan trọng</th>
-                    <th>Khuyến nghị</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Nền tảng</td>
-                    <td>Đăng ký (Account Registration)</td>
-                    <td>🔴 Không</td>
-                    <td>N/A</td>
-                    <td>- Không có CPT code cụ thể cho administrative setup<br>- Không được Medicare/Medicaid chi trả như dịch vụ độc lập<br>- Commercial payers cũng không cover</td>
-                    <td>- Giữ dạng membership fee component<br>- Hoặc bundle vào first visit (tính như phần của E/M code)<br>- Value-add để attract patients</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Nền tảng</td>
-                    <td>Onboarding (Health Overview)</td>
-                    <td>🔴 Không</td>
-                    <td>N/A</td>
-                    <td>- Như trên</td>
-                    <td>- Như trên</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Cốt lõi</td>
-                    <td>24/7 Access (Acute Care)</td>
-                    <td>🟡 Thấp/Trung bình</td>
-                    <td>99050: Services requested after office hours<br>99051: Services between 10pm-8am<br>99053: Weekend/holiday services</td>
-                    <td>❌ Không được chi trả trực tiếp:<br>- Không phải dịch vụ định danh: Bản thân việc cung cấp "quyền truy cập" (Access layer) không được coi là một dịch vụ có thể thanh toán.<br>- Không trả cho sự sẵn sàng: Các công ty bảo hiểm (Payers) không trả tiền chỉ vì bạn "sẵn sàng phục vụ" (availability).<br><br>✅ Có thể thanh toán gián tiếp:<br>- Chuyển đổi thành buổi khám: Nếu việc truy cập dẫn đến một buổi khám bệnh thực tế -> Tiến hành thanh toán cho buổi khám đó (Bill for visit).<br>- Phụ trội ngoài giờ: Nếu buổi khám diễn ra ngoài giờ hành chính (After-hours), có thể áp dụng mã sửa đổi (modifier) riêng để nhận mức hoàn trả cao hơn.</td>
-                    <td>- Đưa vào thành tính năng trong gói Subscription<br>- Chỉ bill khi có khám thật (Actual visit).<br>- Dùng E/M Codes + Modifier ngoài giờ (để tăng mức hoàn trả).</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Cốt lõi</td>
-                    <td>Chronic Disease Mgmt (CCM)</td>
-                    <td>🟢 Cao (Rất tốt)</td>
-                    <td>99490, 99439, 99491, 99487, 99489</td>
-                    <td>Medicare:<br>- Bệnh nhân: ≥2 bệnh mãn tính (>12 tháng), nguy cơ cao.<br>- Yêu cầu: Có Care Plan, Hỗ trợ 24/7, Quản lý thuốc.<br>- Thời gian: ≥20 phút/tháng (tương tác từ xa).<br>- Pháp lý: Cần bệnh nhân ký cam kết.<br>Chỉ 1 nơi được bill/tháng.<br><br>Medicaid:<br>- Tùy bang (CA/VA/WA qua MCOs; TX hạn chế).<br>Tư nhân (Commercial):<br>- 75-80% chi trả (~$50-$100/tháng).<br>- Thường cần Xin chấp thuận trước (Prior Auth).</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Cốt lõi</td>
-                    <td>Specialist Referral</td>
-                    <td>🔴 Không</td>
-                    <td>N/A</td>
-                    <td>❌ Không được chi trả độc lập:<br>- Referral coordination không có CPT code riêng<br>- Được coi là part of E/M visit (bundled)</td>
-                    <td>- Đưa vào subscription (làm Value-add).<br>- Bundle vào buổi khám (nếu referral phát sinh trong lúc khám).<br>- Track Data: Tracking để chứng minh năng lực Care Coordination (lợi thế đàm phán deal Value-based sau này).</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Cốt lõi</td>
-                    <td>Video Visit (Khám bệnh)</td>
-                    <td>🟢 Cao</td>
-                    <td>99202 -> 99205 (New patient)<br>99212 -> 99215 (Established Patient)</td>
-                    <td>Medicare:<br>- Trả 100% (như khám trực tiếp).<br>Được khám tại nhà.<br>- Yêu cầu: BS có License tại bang của BN.<br><br>Medicaid:<br>- CA/VA/WA: 100% rate.<br>- TX: ~80% rate.<br><br>Commercial (Tư nhân):<br>- 96% plans cover.<br>- In-network: Copay $10-$50.<br>- Out-network: Co-insurance 50-70% (BN tự trả cao).</td>
-                    <td>Yêu cầu triển khai:<br><br>Credentialing (3-6 tháng):<br>- Medicare (PECOS)<br>- Medicaid (theo Bang)<br>- Tư nhân (Ký HĐ riêng)<br><br>Licensing: BS phải có License tại bang của BN (Dùng IMLC hoặc thuê BS địa phương).<br>Tech: Chuẩn HIPAA + Ký BAA + Ghi nhận EMR.<br>Billing: Có mã Group NPI + Hệ thống gửi Claims.</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Cốt lõi</td>
-                    <td>Medication Review</td>
-                    <td>🟡 Trung bình</td>
-                    <td>99605, 99606 (MTM)</td>
-                    <td>Medicare Part D (MTM):<br>Điều kiện: ≥3 bệnh mãn tính + ≥8 loại thuốc + Chi phí thuốc >$5,000/năm.<br>Rate: CMR $75-$150/lượt; TMR $25-$50/lượt.<br>Cơ chế: Bill qua Part D Plans (phải ký hợp đồng với Plan), KHÔNG bill trực tiếp Medicare.<br>Medicaid:<br>Tùy bang (CA, WA có trả qua MCOs).<br>Rate: ~$40-$100/review.<br><br>Commercial:<br>Không ổn định.<br>Thường tính vào Pharmacy Benefit (qua PBMs), không phải Medical Benefit.</td>
-                    <td>- CVH partner với Part D plans (Medicare Advantage)<br>- Hoặc offer as value-add trong subscription</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Hỗ trợ</td>
-                    <td>Medical Library</td>
-                    <td>🔴 Không</td>
-                    <td>N/A</td>
-                    <td>Educational content không được payers chi trả<br>Không có CPT code</td>
-                    <td>Đưa vào subscription (làm Value-add)</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Hỗ trợ</td>
-                    <td>Service & Medical Chat</td>
-                    <td>🟡 Thấp/Trung bình</td>
-                    <td>Medicare:<br>Có một số codes cho "online digital E/M":<br>99421: 5-10 min (2024: $16.53)<br>99422: 11-20 min ($33.15)<br>99423: ≥21 min ($48.60)</td>
-                    <td>Medicare:<br>BN phải tự khởi xướng.<br>Tính tổng time/7 ngày.<br>Phải là BN cũ (Established).<br>Không bill trùng tháng với E/M khác.<br>Medicaid:<br>Tùy bang (WA: OK; CA: Ít; TX: Không).<br><br>Commercial:<br>Chỉ ~40% plans cover.<br>Rate thấp ($10-$30).</td>
-                    <td>KHÔNG ƯU TIÊN BILL.<br>Rate quá thấp ($16-$48).<br>Tốn công Admin (track 7 ngày, check loại trừ).<br>Nên đưa vào subscription (làm Value-add)</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Theo dõi</td>
-                    <td>Self-360</td>
-                    <td>🟡 Thấp</td>
-                    <td>99453, 99454, 99457, 99458</td>
-                    <td>❌ Tự theo dõi (Self-monitoring):<br>Không được chi trả: Các công ty bảo hiểm (Payers) không trả tiền cho bản thân ứng dụng (App) hoặc công cụ công nghệ đơn thuần.<br>✅ Ngoại lệ (Cơ hội thanh toán):<br>- Dữ liệu từ việc tự theo dõi CÓ THỂ hỗ trợ việc thanh toán (billing) NẾU được kết hợp vào chương trình Theo dõi Bệnh nhân Từ xa (RPM).<br>- Điều kiện bắt buộc: RPM yêu cầu thiết bị phải có khả năng tự động truyền dữ liệu (data transmission), không chấp nhận nhập tay.</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Theo dõi</td>
-                    <td>Annual Health Check</td>
-                    <td>🟢 Cao (Medicare)</td>
-                    <td>G0438, G0439 (AWV)</td>
-                    <td>Medicare (AWV):<br>- G0438 (Lần đầu): Rate ~$174.<br>- G0439 (Định kỳ): Rate ~$129/năm.<br>- Telehealth: Được phép.<br>- Nội dung: Đánh giá nguy cơ (HRA), Lên kế hoạch phòng ngừa, Rà soát thuốc/tâm lý/nhận thức.<br>Medicaid: Tùy bang (CA: Có trả; Bang khác: Check lại).<br>Commercial:<br>- Bắt buộc chi trả theo luật ACA (No Copay cho BN).<br>- Rate: ~$100-$200.</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Theo dõi</td>
-                    <td>Precision Lab Health Advisory</td>
-                    <td>🟡 Trung bình</td>
-                    <td>CPT Lab codes riêng<br>99214</td>
-                    <td>Cơ chế tách biệt:<br><br>- Phí Test: Lab (LabCorp/Quest) tự bill trực tiếp bảo hiểm.<br>CVH không thu hoặc có MA support thủ tục cho các gói VIP<br>- Phí Tư vấn: CVH bill công đọc kết quả (tính là 1 buổi khám E/M, thường dùng code 99214).<br>Lưu ý: Chỉ định xét nghiệm phải chứng minh được tính "Medically Necessary" (Cần thiết y tế).</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Step 6 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">6</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">CCM Monthly (Retention)</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">Phone (primary) · Zalo · EHR time tracking · Billing system</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">Cuộc gọi hàng tháng ≥20 phút — care coordinator tier 1, Pete tier 2, Pete direct tier 3<br>AI pre-brief hồ sơ; AI mid-month check (ngày 10)<br>Billing gate cuối tháng: kiểm tra ≥20 phút + consent + care plan<br>Tháng 2–3: Pete giới thiệu MTM</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">Care Coordinator: primary contact<br>MD: review và escalate<br>PharmD: MTM cross-sell pitch tháng 2–3</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Bệnh nhân 'chờ cuộc gọi từ bác sĩ của mình' · Hình thành thói quen — cuộc gọi trở thành anchor hàng tháng · Con cái: an tâm vì biết ba mẹ được theo dõi</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• System ask referral tại tháng 3: 'Bạn có ai bạn bè cần dịch vụ này không?'
+• Monthly update cho caregiver (email brief)
+• Escalate to MD nếu BN báo triệu chứng lo ngại</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Monthly clinical review của care plan
+• Adjust medications khi cần (qua E&M visit)
+• Document clinical changes ngay khi xảy ra</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">Monthly contact rate ≥ 95%<br>Churn rate ≤ 5%/tháng<br>MTM cross-sell rate ≥ 60% sau 90 ngày</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Churn xảy ra khi thiếu contact ≥2 tháng<br>BN bệnh nặng hơn → cần upgrade care (không phải churn)<br>Bác sĩ overloaded → quality of calls giảm</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="conclusion-box">
-        <h3>GỢI Ý VỀ ĐÓNG GÓI SẢN PHẨM TỪ GÓC ĐỘ BẢO HIỂM</h3>
-        <ul>
-            <li>Đừng bán lẻ các dịch vụ "Màu đỏ". Hãy gộp Account Setup, Library, Chat vào gói Membership hàng tháng.</li>
-            <li>Sử dụng dịch vụ "Màu xanh" làm phễu thu hút (Hook product) vì nó miễn phí cho bệnh nhân Medicare, sau đó upsell lên gói Sub hoặc các dịch vụ trả phí khác</li>
-        </ul>
+    <!-- Step 7 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">7</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-phase">MTM Cross-sell</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.6)">CMR call · EHR · Outcomes MTM platform · Fax to PCP</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">Pete giới thiệu MTM cuối CCM call tháng 2–3:<br>'Dược sĩ của chúng tôi muốn review thuốc của bạn một lần — hoàn toàn miễn phí qua Part D'<br>PharmD schedule CMR call ≥15 phút<br>PharmD lập PML + MAP tiếng Việt → gửi BN + fax bác sĩ chính</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">PharmD: primary lead CMR<br>Care Coordinator: schedule, pre-qualify<br>MD: review DTP recommendations</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Bất ngờ vì 'review thuốc miễn phí' · Relief khi hiểu được mình đang uống gì và tại sao · Bà Thu type: đây có thể là lần đầu tiên ai đó giải thích đầy đủ</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Coordinate TMR schedule mỗi 90 ngày sau CMR
+• Send PML + MAP tiếng Việt cho BN và caregiver
+• Collect herb/supplement questionnaire trước CMR call</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• PharmD conduct CMR call ≥15 phút
+• Review drug-drug interactions, adherence gaps
+• Fax MAP/PML đến PCP của BN trong ngày
+• Escalate DTP nếu cần E&M visit ngay</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">60% CCM patients → MTM within 90 days<br>CMR completion rate ≥ 95%<br>DTP identified per patient ≥ 1</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">MTM cold-pitch failure (OR telepharmacy = 0.24 với 65+) → PHẢI có CCM warm relationship trước<br>Part D eligibility change mid-year<br>BN từ chối vì 'uống thuốc đều rồi, không cần'</div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+
+    <!-- Step 8 -->
+    <div class="journey-step">
+      <div class="step-num-col">
+        <div class="step-num">8</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header" style="background:linear-gradient(135deg,#c8973a,#e8b855)">
+          <div class="step-phase" style="color:#fff">🔄 Advocacy & Referral Flywheel</div>
+          <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.7)">Word of mouth · Chùa/nhà thờ · Facebook groups · Reddit reviews</div>
+        </div>
+        <div class="step-card-body">
+          <div>
+            <div class="step-section-label">Mô tả hành động</div>
+            <div class="step-section-val">BN hài lòng kể tại chùa/senior center → giới thiệu 1–2 người quen<br>Care coordinator systematic ask tháng 3 CCM call: 'Bạn có ai bạn bè cần dịch vụ này không?'<br>Script đơn giản: 'Nói với bạn rằng bác sĩ người Việt sẽ gọi hỏi thăm mỗi tháng, không mất tiền thêm'<br>Anh Tuấn type: post review trên Facebook/Reddit</div>
+          </div>
+          <div>
+            <div class="step-section-label">Người thực hiện</div>
+            <div class="step-section-val">Team BD: track referral source<br>Care Coordinator: systematic ask + thank you<br>All: deliver exceptional experience</div>
+            <div class="step-section-label" style="margin-top:10px">Cảm xúc BN/Caregiver</div>
+            <div class="step-section-val">Proud khi giới thiệu điều tốt cho bạn bè · Con cái: identity signal — 'tôi chăm sóc ba mẹ tốt' · Bà Lan type: social currency trong cộng đồng chùa</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp BD</div>
+            <div class="step-section-val">• Build referral script vào CCM call workflow tháng 3
+• Track: hỏi mỗi BN mới 'Ai giới thiệu bạn?'
+• Thank you notes (viết tay hoặc gọi điện) cho người giới thiệu
+• Community ambassador program tháng 6+</div>
+          </div>
+          <div>
+            <div class="step-section-label">Điểm can thiệp MD</div>
+            <div class="step-section-val">• Deliver high-quality care = foundation của referral
+• Ensure CCM documentation chất lượng → outcomes data tốt
+• Identify advocate patients để invite tham gia health talks cộng đồng</div>
+          </div>
+          <div>
+            <div class="step-section-label">KPI giai đoạn</div>
+            <div class="step-kpi">15–25% new patients từ referral (tháng 6)<br>Net Promoter Score ≥ 70<br>Referral source tracked 100%</div>
+          </div>
+          <div>
+            <div class="step-section-label">Rủi ro giai đoạn</div>
+            <div class="step-risk">Referral KHÔNG xảy ra tự nhiên — cần systematic ask<br>Chỉ hoạt động khi patient satisfaction cao<br>Không thể control pace → không dùng làm primary channel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
 
 <script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        
-        // Hide all tab content
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        
-        // Remove "active" class from all tab links
-        tablinks = document.getElementsByClassName("tab-links");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+function switchTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+}
 </script>
-
 </body>
 </html>
